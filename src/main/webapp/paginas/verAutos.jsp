@@ -13,10 +13,10 @@
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous">
 </head>
-<body class="d-flex">
+<body class="d-flex" style="height: 100vh;">
 	<%@ include file="../componentes/navbar.jsp"%>
 
-	<div class="m-5 mh-100">
+	<div class="mt-3 mx-5 d-flex justify-content-center flex-column gap-3">
 		<h2>Listado de autos</h2>
 		<div class="d-flex gap-3 flex-wrap"
 			style="max-height: 80vh; overflow-y: auto; flex-wrap: wrap;">
@@ -57,6 +57,7 @@
 						class="btn <%=auto.getEstado().trim().equals("Disponible") ? "btn-success" : "btn-warning"%> w-100 mt-3"
 						style="border-radius: 25px;"> <%=auto.getEstado()%>
 					</span> 
+
 				</div>
 			</div>
 			<%

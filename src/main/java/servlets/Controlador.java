@@ -1,6 +1,5 @@
 package servlets;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,16 +12,17 @@ import clases.Auto;
 import dao.AutoDAO;
 
 /**
- * Servlet implementation class AutosSV
+ * Servlet implementation class Controlador
  */
-@WebServlet(name = "autos", urlPatterns = { "/autos" })
-public class AutosSV extends HttpServlet {
+@WebServlet(name = "controlador", urlPatterns = { "/controlador" })
+public class Controlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private AutoDAO autoDAO = new AutoDAO();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AutosSV() {
+	public Controlador() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,13 +34,37 @@ public class AutosSV extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
-		
-
+		String dispatcher = "";
+		// Redirige según el valor de "action"
 		switch (action != null ? action : "") {
+		case "verAutos":
+			ArrayList<Auto> autos = autoDAO.listarAutos();
+			request.setAttribute("autos", autos);
+
+			dispatcher = "/paginas/verAutos.jsp";
+
+			break;
+		case "agregarAuto":
+			dispatcher = "/paginas/AgregarAuto.jsp";
+			break;
 		case "borrarAuto":
-			doDelete(request, response);
+			dispatcher = "/paginas/BorrarAuto.jsp";
+			break;
+		case "modificarAuto":
+			dispatcher = "/paginas/ModificarAuto.jsp";
+			break;
+		case "verAlquilados":
+			dispatcher = "/paginas/verAlquilados.jsp";
+			break;
+		case "alquilarAuto":
+			dispatcher = "/paginas/AlquilarAuto.jsp";
+			break;
+		default:
+			// Si no coincide ninguna acción, redirige a una página de error o al inicio
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 			break;
 		}
+		request.getRequestDispatcher(dispatcher).forward(request, response);
 	}
 
 	/**
@@ -50,33 +74,7 @@ public class AutosSV extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String action = request.getParameter("action");
-
-		switch (action != null ? action : "") {
-
-		}
 		doGet(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doPut(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		response.getWriter().append("Auto eliminado");
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/paginas/verAutos.jsp");
-		dispatcher.forward(request, response);
-
 	}
 
 }

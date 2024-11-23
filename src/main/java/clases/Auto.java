@@ -1,7 +1,5 @@
 package clases;
 
-import java.sql.Connection;
-
 public class Auto {
 	private int id;
 	private String marca;
