@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import clases.Auto;
-import clases.ConexionBD;
 import interfaces.AutoDao;
+import modelo.clases.Auto;
+import modelo.clases.ConexionBD;
 
 public class AutoDAO implements AutoDao {
 
@@ -61,6 +61,66 @@ public class AutoDAO implements AutoDao {
 		}
 		// TODO Auto-generated method stub
 		return autos;
+	}
+	
+	public Auto alquilarAuto(int id) {
+		Auto auto = null;
+		String sql = "SELECT * FROM autos WHERE id_auto = ?";
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				int id_auto = rs.getInt("id_auto");
+				String marca = rs.getString("marca");
+				String modelo = rs.getString("modelo");
+				String anio = rs.getString("anio");
+				String color = rs.getString("color");
+				String matricula = rs.getString("matricula");
+				double precioDia = rs.getDouble("precio_por_dia");
+				String estado = rs.getString("estado");
+				String img = rs.getString("img");
+
+				auto = new Auto(id_auto, marca, modelo, anio, color, matricula, precioDia, estado, img);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return auto;
+	}
+	
+	public ArrayList<Auto> obtenerAuto(String id) {
+		Auto auto = null;
+		String sql = "SELECT * FROM autos WHERE matricula = ?";
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, "%"+id+"%");
+			ResultSet rs = stmt.executeQuery();
+			ArrayList<Auto> autos = new ArrayList<Auto>();
+			if (rs.next()) {
+				int id_auto = rs.getInt("id_auto");
+				String marca = rs.getString("marca");
+				String modelo = rs.getString("modelo");
+				String anio = rs.getString("anio");
+				String color = rs.getString("color");
+				String matricula = rs.getString("matricula");
+				double precioDia = rs.getDouble("precio_por_dia");
+				String estado = rs.getString("estado");
+				String img = rs.getString("img");
+
+				auto = new Auto(id_auto, marca, modelo, anio, color, matricula, precioDia, estado, img);
+				autos.add(auto);
+			}
+			return autos;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
+	@Override
+	public ArrayList<Auto> obtenerAuto(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

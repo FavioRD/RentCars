@@ -1,4 +1,4 @@
-package clases;
+package modelo.clases;
 
 public class Auto {
 	private int id;
