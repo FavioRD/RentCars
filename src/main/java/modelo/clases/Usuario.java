@@ -3,6 +3,7 @@ package modelo.clases;
 import java.sql.Date;
 
 public class Usuario {
+	private int id;
 	private String usuario;
 	private String contrasena;
 	private String nombre;
@@ -17,9 +18,10 @@ public class Usuario {
 	public Usuario() {
 	}
 	
-	public Usuario(String usuario, String contrasena, String nombre, String apellido, String email, String telefono,
+	public Usuario(int id,String usuario, String contrasena, String nombre, String apellido, String email, String telefono,
 			String direccion, String rol, String dni, Date fechaNacimiento) {
 		super();
+		this.id = id;
 		this.usuario = usuario;
 		this.contrasena = contrasena;
 		this.nombre = nombre;
@@ -90,6 +92,13 @@ public class Usuario {
 	}
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getId() {
+		return id;
 	}
 	
 	

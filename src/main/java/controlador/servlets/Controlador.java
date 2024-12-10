@@ -44,7 +44,7 @@ public class Controlador extends HttpServlet {
 		if (usuario == null) {
 			response.sendRedirect("paginas/login.jsp");
 		} else {
-			if (usuario.getRol().equals("Administrador")) {
+			if (usuario.getRol().equals("administrador")) {
 				String action = request.getParameter("action");
 				String dispatcher = "";
 				// Redirige según el valor de "action"
@@ -81,7 +81,8 @@ public class Controlador extends HttpServlet {
 					break;
 				case "volverInicio":
 //					dispatcher = "/WEB-INF/paginas/Home.jsp";
-					RequestDispatcher dispatcher1= request.getRequestDispatcher("/WEB-INF/paginas/Home.jsp");
+					System.out.println("Llega");
+					RequestDispatcher dispatcher1= request.getRequestDispatcher("/paginas/Home.jsp");
 					dispatcher1.forward( request, response );
 					break;
 				case "cerrarSesion":
