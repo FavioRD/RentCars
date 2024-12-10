@@ -6,7 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import modelo.clases.Auto;
+import modelo.clases.Usuario;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import dao.AutoDAO;
 @WebServlet(name = "autos", urlPatterns = { "/autos" })
 public class AutosSV extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private AutoDAO autoDAO = new AutoDAO();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -34,13 +37,42 @@ public class AutosSV extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String action = request.getParameter("action");
-		
 
-		switch (action != null ? action : "") {
-		case "borrarAuto":
-			doDelete(request, response);
-			break;
+		HttpSession sesion = request.getSession();
+		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		
+		if (usuario == null) {
+			response.sendRedirect("paginas/login.jsp");
+		} else {
+			if (usuario.getRol().equals("administrador")) {
+				String action = request.getParameter("action");
+				String dispatcher = "";
+
+				switch (action != null ? action : "") {
+				case "verAutos":
+					ArrayList<Auto> autos = autoDAO.listarAutos();
+					request.setAttribute("autos", autos);
+
+					dispatcher = "/paginas/verAutos.jsp";
+					request.getRequestDispatcher(dispatcher).forward(request, response);
+					break;
+				case "borrarAuto":
+					doDelete(request, response);
+					break;
+				case "agregarAuto":
+					dispatcher="/paginas/AgregarAuto.jsp";
+					break;
+				case "AquilarAuto":
+					dispatcher="/paginas/AlquilarAuto.jsp";
+					break;
+				case "ModificarAuto":
+					dispatcher="/paginas/ModificarAuto.jsp";
+					break;
+				case "verAlquilados":
+					dispatcher = "/paginas/verAlquilados.jsp";
+					break;
+				}
+			}
 		}
 	}
 

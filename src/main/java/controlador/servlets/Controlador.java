@@ -49,36 +49,7 @@ public class Controlador extends HttpServlet {
 				String dispatcher = "";
 				// Redirige según el valor de "action"
 				switch (action != null ? action : "") {
-				case "verAutos":
-					ArrayList<Auto> autos = autoDAO.listarAutos();
-					request.setAttribute("autos", autos);
-
-					dispatcher = "/paginas/verAutos.jsp";
-					request.getRequestDispatcher(dispatcher).forward(request, response);
-					break;
-				case "verAuto":
-					ArrayList<Auto> auto = autoDAO.obtenerAuto(request.getParameter("id"));
-					request.setAttribute("auto", auto);
-
-					dispatcher = "/paginas/verAutos.jsp";
-					request.getRequestDispatcher(dispatcher).forward(request, response);
-					break;
-				case "agregarAuto":
-					dispatcher = "/paginas/AgregarAuto.jsp";
-					break;
-				case "borrarAuto":
-					dispatcher = "/paginas/BorrarAuto.jsp";
-					break;
-				case "modificarAuto":
-					dispatcher = "/paginas/ModificarAuto.jsp";
-					break;
-				case "verAlquilados":
-					dispatcher = "/paginas/verAlquilados.jsp";
-					break;
-				case "alquilarAuto":
-					dispatcher = "alquilarAuto";
-					response.sendRedirect(dispatcher);
-					break;
+			
 				case "volverInicio":
 //					dispatcher = "/WEB-INF/paginas/Home.jsp";
 					System.out.println("Llega");

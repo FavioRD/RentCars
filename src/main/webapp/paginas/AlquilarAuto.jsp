@@ -16,7 +16,7 @@
 
         <!-- Campo para ingresar el id_auto -->
         <label for="id_auto">ID Auto:</label>
-        <input name="id_auto" type="text" id="id_auto" required>
+        <input name="id_auto" type="text" id="id_auto" value="<%=request.getParameter("id") %>" required>
         <br><br>
 
         <!-- Campo para la fecha de inicio del alquiler -->

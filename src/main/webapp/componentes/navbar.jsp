@@ -25,7 +25,7 @@
 				href="${pageContext.request.contextPath}/paginas/AgregarAuto.jsp"
 				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Mantenimiento Autos</a></li>
 			<li><a
-				href="${pageContext.request.contextPath}/controlador?action=verAutos"
+				href="${pageContext.request.contextPath}/autos?action=verAutos"
 				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Listar Autos</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/paginas/VerAlquilados.jsp"
