@@ -51,14 +51,33 @@
 						<li><strong>Precio por Día:</strong> <%=auto.getPrecio_dia()%>
 							USD</li>
 					</ul>
+					<%
+					String estado = auto.getEstado().trim();
+					%>
+					<!-- Botón con estilo basado en el estado -->
+					<span
+						class="btn <%=estado.equals("Disponible") ? "btn-success" : "btn-warning"%> w-100 mt-3"
+						style="border-radius: 25px;"> <%=estado%>
+					</span>
 
-					<!-- Botón con enlace -->
-					<span href="#"
-						class="btn <%=auto.getEstado().trim().equals("Disponible") ? "btn-success" : "btn-warning"%> w-100 mt-3"
-						style="border-radius: 25px;"> <%=auto.getEstado()%>
-					</span> <a href="alquilarAuto?id=<%= auto.getId() %>"
-						class="btn btn-primary w-100 mt-3" style="border-radius: 25px;">Alquilar
-					</a>
+					<!-- Mostrar botones según el estado del auto -->
+					<%
+					if (estado.equals("Disponible")) {
+					%>
+					<!-- Botón para alquilar si el auto está disponible -->
+					<a href="alquilarAuto?id=<%=auto.getId()%>"
+						class="btn btn-primary w-100 mt-3" style="border-radius: 25px;">
+						Alquilar </a>
+					<%
+					} else if (estado.equals("Alquilado")) {
+					%>
+					<!-- Botón de opciones si el auto está alquilado -->
+					<a href="opcionesAuto?id=<%=auto.getId()%>"
+						class="btn btn-secondary w-100 mt-3" style="border-radius: 25px;">
+						Opciones de Alquiler </a>
+					<%
+					}
+					%>
 				</div>
 			</div>
 			<%
