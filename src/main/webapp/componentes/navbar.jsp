@@ -37,8 +37,7 @@
 					Auto</a></li>
 					<li><a
 				href="${pageContext.request.contextPath}/cliente"
-				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Alquilar
-					Auto</a></li>
+				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Listar Clientes</a></li>
 		</ul>
 		<!-- Botón de cerrar sesión -->
 		<div class="text-center py-5">

@@ -12,10 +12,10 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/cliente")
-public class Clientes extends HttpServlet {
+public class ClientesSV extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public Clientes() {
+    public ClientesSV() {
         super();
     }
 
