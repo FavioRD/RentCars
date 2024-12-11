@@ -51,7 +51,6 @@ public class Controlador extends HttpServlet {
 				switch (action != null ? action : "") {
 			
 				case "volverInicio":
-//					dispatcher = "/WEB-INF/paginas/Home.jsp";
 					RequestDispatcher dispatcher1= request.getRequestDispatcher("/paginas/Home.jsp");
 					dispatcher1.forward( request, response );
 					break;
