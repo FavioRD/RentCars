@@ -25,7 +25,7 @@ public class AutoDAO implements AutoDao {
 	@Override
 	public void eliminarAuto(int id) {
 		String sql = "DELETE FROM autos WHERE id_auto = ?";
-		try (Connection conn = ConexionBD.getConexion(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
 		} catch (Exception e) {
@@ -38,7 +38,7 @@ public class AutoDAO implements AutoDao {
 	public ArrayList<Auto> listarAutos() {
 		ArrayList<Auto> autos = new ArrayList<Auto>();
 		String sql = "SELECT * FROM autos";
-		try (Connection conn = ConexionBD.getConexion();
+		try (Connection conn = ConexionBD.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(sql);
 				ResultSet rs = stmt.executeQuery()) {
 
@@ -66,7 +66,7 @@ public class AutoDAO implements AutoDao {
 	public Auto alquilarAuto(int id) {
 		Auto auto = null;
 		String sql = "SELECT * FROM autos WHERE id_auto = ?";
-		try (Connection conn = ConexionBD.getConexion(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
@@ -91,7 +91,7 @@ public class AutoDAO implements AutoDao {
 	public ArrayList<Auto> obtenerAuto(String id) {
 		Auto auto = null;
 		String sql = "SELECT * FROM autos WHERE matricula = ?";
-		try (Connection conn = ConexionBD.getConexion(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, "%"+id+"%");
 			ResultSet rs = stmt.executeQuery();
 			ArrayList<Auto> autos = new ArrayList<Auto>();

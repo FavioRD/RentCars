@@ -41,7 +41,7 @@ public class UsuarioDao implements IUsuario {
 		// TODO Auto-generated method stub
 		try {
 
-			Connection conn = ConexionBD.getConexion();
+			Connection conn = ConexionBD.getConnection();
 			String sql = "SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, usuario);
@@ -50,7 +50,6 @@ public class UsuarioDao implements IUsuario {
 
 			Usuario usuarioLogueado = null;
 			if (rs.next()) {
-				int idUsuario = rs.getInt("id"); 
 				String usuarioBD = rs.getString("usuario");
 				String contrasenaBD = rs.getString("contrasena");
 				String nombre = rs.getString("nombre");
@@ -62,7 +61,7 @@ public class UsuarioDao implements IUsuario {
 				String dni = rs.getString("dni");
 				Date fechaNacimiento = rs.getDate("fechaNacimiento");
 				
-				usuarioLogueado = new Usuario(idUsuario,usuarioBD, contrasenaBD, nombre, apellido, email, telefono, direccion, rol, dni, fechaNacimiento);
+				usuarioLogueado = new Usuario(usuarioBD, contrasenaBD, nombre, apellido, email, telefono, direccion, rol, dni, fechaNacimiento);
 			}
 
 			conn.close();

@@ -23,10 +23,12 @@
 			class="d-flex flex-column justify-content-center gap-3 list-unstyled w-100 px-3 mb-0 flex-grow-1">
 			<li><a
 				href="${pageContext.request.contextPath}/paginas/AgregarAuto.jsp"
-				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Mantenimiento Autos</a></li>
+				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Agregar
+					Auto</a></li>
 			<li><a
-				href="${pageContext.request.contextPath}/autos?action=verAutos"
-				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Listar Autos</a></li>
+				href="${pageContext.request.contextPath}/controlador?action=verAutos"
+				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Ver
+					Autos</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/paginas/VerAlquilados.jsp"
 				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Ver
@@ -35,6 +37,10 @@
 				href="${pageContext.request.contextPath}/paginas/AlquilarAuto.jsp"
 				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Alquilar
 					Auto</a></li>
+					<li><a
+				href="${pageContext.request.contextPath}/paginas/MostrarClientes.jsp"
+				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Mostrar
+					Clientes</a></li>
 		</ul>
 		<!-- Botón de cerrar sesión -->
 		<div class="text-center py-5">
@@ -42,6 +48,7 @@
 				href="${pageContext.request.contextPath}/controlador?action=cerrarSesion"
 				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Cerrar
 				Sesión</a>
+				
 		</div>
 	</nav>
 

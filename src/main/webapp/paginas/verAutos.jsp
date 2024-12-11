@@ -56,7 +56,7 @@
 					<span href="#"
 						class="btn <%=auto.getEstado().trim().equals("Disponible") ? "btn-success" : "btn-warning"%> w-100 mt-3"
 						style="border-radius: 25px;"> <%=auto.getEstado()%>
-					</span> <a href="alquilarAuto?id=<%= auto.getId() %>"
+					</span> <a href="controlador?action=alquilarAuto?id=<%=auto.getId()%>"
 						class="btn btn-primary w-100 mt-3" style="border-radius: 25px;">Alquilar
 					</a>
 				</div>
