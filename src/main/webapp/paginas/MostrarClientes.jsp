@@ -16,7 +16,7 @@
                 <th>Documento</th>
                 <th>Dirección</th>
                 <th>Teléfono</th>
-                <th>Correo</th>
+                <th>Correo</th>gg
             </tr>
         </thead>
         <tbody>
