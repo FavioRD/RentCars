@@ -10,7 +10,6 @@ public class ConexionBD {
 	private final static String password = "0800jeremias";
 
 	public static Connection getConexion() {
-		System.out.println("User: " + user);
 		Connection conexion = null;
 		try {
 			// Cargar el driver JDBC
