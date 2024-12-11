@@ -10,6 +10,12 @@ public class Auto {
 	private double precio_dia;
 	private String estado;
 	private String img;
+	
+	
+	public Auto() {
+		super();
+	}
+	
 	public Auto(int id, String marca, String modelo, String anio, String color, String matricula, double precio_dia,
 			String estado , String img) {
 		super();

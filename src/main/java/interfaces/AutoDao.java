@@ -12,8 +12,9 @@ public interface AutoDao {
 	public void eliminarAuto(int id);
 
 	public ArrayList<Auto> listarAutos();
+
+	public Auto obtenerAuto(int id);
 	
-	public Auto alquilarAuto(int id);
+	public void cambiarEstado(int id, String estado);
 	
-	public ArrayList<Auto> obtenerAuto(int id);
 }

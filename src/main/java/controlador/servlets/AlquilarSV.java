@@ -7,10 +7,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelo.clases.Alquiler;
+import modelo.clases.Auto;
+import modelo.clases.Cliente;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import dao.AlquilarAutoDAO;
+import dao.AutoDAO;
+import dao.ClienteDAO;
+import interfaces.AutoDao;
 
 /**
  * Servlet implementation class AlquilarSV
@@ -33,10 +39,19 @@ public class AlquilarSV extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+//		Listar clientes
+		ArrayList<Cliente> clientes = new ClienteDAO().listarClientes();
+//		Recuperar el id del auto
 		int idAuto = Integer.parseInt(request.getParameter("id"));
 
+//		 Obtener el auto con el id especifico
+		Auto auto = new AutoDAO().obtenerAuto(idAuto);
+
+//		 Enviar los datos a la vista
 		String dispatcher = "/paginas/AlquilarAuto.jsp";
+
+		request.setAttribute("clientes", clientes);
+		request.setAttribute("auto", auto);
 		request.getRequestDispatcher(dispatcher).forward(request, response);
 	}
 
@@ -47,11 +62,12 @@ public class AlquilarSV extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		AlquilarAutoDAO dao = new AlquilarAutoDAO();
+
+		AlquilarAutoDAO daoAlquiler = new AlquilarAutoDAO();
+		AutoDao daoAuto = new AutoDAO();
 		
 		String idCliente = request.getParameter("id_cliente");
-		String idAuto =  request.getParameter("id_auto");
+		String idAuto = request.getParameter("id_auto");
 		String fechaInicioStr = request.getParameter("fecha_inicio");
 		String fechaFinStr = request.getParameter("fecha_fin");
 		double precioTotal = Double.parseDouble(request.getParameter("precio_total"));
@@ -61,12 +77,20 @@ public class AlquilarSV extends HttpServlet {
 		java.sql.Date fechaInicio = java.sql.Date.valueOf(fechaInicioStr);
 		java.sql.Date fechaFin = java.sql.Date.valueOf(fechaFinStr);
 
+		System.out.println("idCliente: " + idCliente);
+		System.out.println("idAuto: " + idAuto);
+		System.out.println("fechaInicio: " + fechaInicio);
+		System.out.println("fechaFin: " + fechaFin);
+		System.out.println("precioTotal: " + precioTotal);
+		System.out.println("estadoAlquiler: " + estadoAlquiler);
+
 		// Crear un objeto de tipo Alquiler para usarlo en la inserción
-		Alquiler alquiler = new Alquiler(Integer.parseInt(idAuto), Integer.parseInt(idCliente), fechaInicio, fechaFin, precioTotal, estadoAlquiler);
-		
-		dao.alquilarAuto(alquiler);
-		System.out.println("Alquilar auto");
-		
+		Alquiler alquiler = new Alquiler(Integer.parseInt(idAuto), Integer.parseInt(idCliente), fechaInicio, fechaFin,
+				precioTotal, estadoAlquiler);
+
+		daoAlquiler.alquilarAuto(alquiler);
+		daoAuto.cambiarEstado(Integer.parseInt(idAuto), "Alquilado");
+
 	}
 
 }
