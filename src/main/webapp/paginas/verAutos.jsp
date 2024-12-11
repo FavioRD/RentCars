@@ -78,8 +78,8 @@
 					<%
 					}
 					%>
-					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button"
+					<div class="dropdown btn w-100 mt-3">
+						<button class="btn w-100 btn-secondary dropdown-toggle" type="button"
 							data-bs-toggle="dropdown" aria-expanded="false">Mantenimiento</button>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="autos?action=modificarAuto&id=<%= auto.getId() %>">Modificar Auto</a></li>
