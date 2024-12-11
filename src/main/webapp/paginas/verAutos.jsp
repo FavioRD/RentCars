@@ -78,7 +78,17 @@
 					<%
 					}
 					%>
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							data-bs-toggle="dropdown" aria-expanded="false">Mantenimiento</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="autos?action=modificarAuto&id=<%= auto.getId() %>">Modificar Auto</a></li>
+							<li><a class="dropdown-item" href="#">Borrar Auto</a></li>
+							
+						</ul>
+					</div>
 				</div>
+
 			</div>
 			<%
 			}
@@ -86,6 +96,9 @@
 			%>
 		</div>
 	</div>
-
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

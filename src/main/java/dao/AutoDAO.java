@@ -18,9 +18,25 @@ public class AutoDAO implements AutoDao {
 
 	@Override
 	public void modificarAuto(int id, Auto auto) {
-		// TODO Auto-generated method stub
+		String sql = "UPDATE autos SET marca = ?, modelo = ?, anio = ?, color = ?, matricula = ?, precio_por_dia = ?, estado = ?, img = ? WHERE id_auto = ?";
+		try (Connection conn = ConexionBD.getConexion(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, auto.getMarca());
+			stmt.setString(2, auto.getModelo());
+			stmt.setString(3, auto.getAnio());
+			stmt.setString(4, auto.getColor());
+			stmt.setString(5, auto.getMatricula());
+			stmt.setDouble(6, auto.getPrecio_dia());
+			stmt.setString(7, auto.getEstado());
+			stmt.setString(8, auto.getImg());
+			stmt.setInt(9, id);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
+
+	
 
 	@Override
 	public void eliminarAuto(int id) {

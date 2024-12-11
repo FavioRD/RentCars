@@ -62,11 +62,12 @@ public class AutosSV extends HttpServlet {
 				case "agregarAuto":
 					dispatcher="/paginas/AgregarAuto.jsp";
 					break;
-				case "AquilarAuto":
-					dispatcher="/paginas/AlquilarAuto.jsp";
-					break;
-				case "ModificarAuto":
+				case "modificarAuto":
+					int id = Integer.parseInt(request.getParameter("id"));
+					Auto auto = autoDAO.obtenerAuto(id);
+					request.setAttribute("auto", auto);
 					dispatcher="/paginas/ModificarAuto.jsp";
+					request.getRequestDispatcher(dispatcher).forward(request, response);
 					break;
 				case "verAlquilados":
 					dispatcher = "/paginas/verAlquilados.jsp";
@@ -84,11 +85,27 @@ public class AutosSV extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String action = request.getParameter("action");
-
+		
 		switch (action != null ? action : "") {
+		case "modificarAuto":
+			int id = Integer.parseInt(request.getParameter("id"));
+			String marca = request.getParameter("marca");
+			String modelo = request.getParameter("modelo");
+			String anio = request.getParameter("anio") ;
+			String color = request.getParameter("color");
+			String matricula = request.getParameter("matricula");
+			double precioDia = Double.parseDouble(request.getParameter("precioDia"));
+			String estado = request.getParameter("estado");
+			String img = request.getParameter("img");
 
+			Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img);
+			autoDAO.modificarAuto(id, auto);
+			response.sendRedirect("autos?action=verAutos");
+			break;
+		default:
+			break;
 		}
-		doGet(request, response);
+		
 	}
 
 	/**
