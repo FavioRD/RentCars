@@ -40,32 +40,32 @@ public class Controlador extends HttpServlet {
 
 		HttpSession sesion = request.getSession();
 		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
-		
+
 		if (usuario == null) {
 			response.sendRedirect("paginas/login.jsp");
 		} else {
-			if (usuario.getRol().equals("administrador") || usuario.getRol().equals("Administrador")) {
-				String action = request.getParameter("action");
-				String dispatcher = "";
-				// Redirige según el valor de "action"
-				switch (action != null ? action : "") {
-			
-				case "volverInicio":
-					RequestDispatcher dispatcher1= request.getRequestDispatcher("/paginas/Home.jsp");
-					dispatcher1.forward( request, response );
-					break;
-				case "cerrarSesion":
-					sesion.invalidate();
-					usuario = null;
-					response.sendRedirect("paginas/login.jsp");
-					break;
-				default:
-					// Si no coincide ninguna acción, redirige a una página de error o al inicio
-					request.getRequestDispatcher("index.jsp").forward(request, response);
-					break;
-				}
+
+			String action = request.getParameter("action");
+			String dispatcher = "";
+			// Redirige según el valor de "action"
+			switch (action != null ? action : "") {
+
+			case "volverInicio":
+				RequestDispatcher dispatcher1 = request.getRequestDispatcher("/paginas/Home.jsp");
+				dispatcher1.forward(request, response);
+				break;
+			case "cerrarSesion":
+				sesion.invalidate();
+				usuario = null;
+				response.sendRedirect("paginas/login.jsp");
+				break;
+			default:
+				// Si no coincide ninguna acción, redirige a una página de error o al inicio
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+				break;
+
 			}
-			
+
 		}
 
 	}
