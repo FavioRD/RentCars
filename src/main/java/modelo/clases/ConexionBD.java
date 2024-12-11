@@ -7,10 +7,9 @@ import java.sql.SQLException;
 public class ConexionBD {
 	private final static String url = "jdbc:mysql://localhost:3306/rentcar";
 	private final static String user = "root";
-	private final static String password = "0800jeremias";
+	private final static String password = "mysql";
 
 	public static Connection getConexion() {
-		System.out.println("User: " + user);
 		Connection conexion = null;
 		try {
 			// Cargar el driver JDBC

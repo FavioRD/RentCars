@@ -40,7 +40,7 @@ public class AutosSV extends HttpServlet {
 
 		HttpSession sesion = request.getSession();
 		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
-		
+
 		if (usuario == null) {
 			response.sendRedirect("paginas/login.jsp");
 		} else {
@@ -60,13 +60,14 @@ public class AutosSV extends HttpServlet {
 					doDelete(request, response);
 					break;
 				case "agregarAuto":
-					dispatcher="/paginas/AgregarAuto.jsp";
+					dispatcher = "/paginas/AgregarAuto.jsp";
+					request.getRequestDispatcher(dispatcher).forward(request, response);
 					break;
 				case "modificarAuto":
 					int id = Integer.parseInt(request.getParameter("id"));
 					Auto auto = autoDAO.obtenerAuto(id);
 					request.setAttribute("auto", auto);
-					dispatcher="/paginas/ModificarAuto.jsp";
+					dispatcher = "/paginas/ModificarAuto.jsp";
 					request.getRequestDispatcher(dispatcher).forward(request, response);
 					break;
 				case "verAlquilados":
@@ -85,27 +86,19 @@ public class AutosSV extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String action = request.getParameter("action");
-		
+
 		switch (action != null ? action : "") {
 		case "modificarAuto":
-			int id = Integer.parseInt(request.getParameter("id"));
-			String marca = request.getParameter("marca");
-			String modelo = request.getParameter("modelo");
-			String anio = request.getParameter("anio") ;
-			String color = request.getParameter("color");
-			String matricula = request.getParameter("matricula");
-			double precioDia = Double.parseDouble(request.getParameter("precioDia"));
-			String estado = request.getParameter("estado");
-			String img = request.getParameter("img");
-
-			Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img);
-			autoDAO.modificarAuto(id, auto);
-			response.sendRedirect("autos?action=verAutos");
+			doPut(request,response);
 			break;
+		case "agregarAuto":
+			Auto autoAgregado = recuperarParametrosAuto(request);
+			autoDAO.registrarAuto(autoAgregado);
+			response.sendRedirect("autos?action=verAutos");
 		default:
 			break;
 		}
-		
+
 	}
 
 	/**
@@ -113,6 +106,9 @@ public class AutosSV extends HttpServlet {
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		Auto auto = recuperarParametrosAuto(request);
+		autoDAO.modificarAuto(auto.getId(), auto);
+		response.sendRedirect("autos?action=verAutos");
 		// TODO Auto-generated method stub
 	}
 
@@ -127,6 +123,22 @@ public class AutosSV extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/paginas/verAutos.jsp");
 		dispatcher.forward(request, response);
 
+	}
+
+	private Auto recuperarParametrosAuto(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		String marca = request.getParameter("marca");
+		String modelo = request.getParameter("modelo");
+		String anio = request.getParameter("anio");
+		String color = request.getParameter("color");
+		String matricula = request.getParameter("matricula");
+		double precioDia = Double.parseDouble(request.getParameter("precioDia"));
+		String estado = request.getParameter("estado");
+		String img = request.getParameter("img");
+
+		Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img);
+
+		return auto;
 	}
 
 }

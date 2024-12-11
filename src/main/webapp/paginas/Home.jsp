@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
-<body>
+<body class="d-flex" style="height: 100vh;">
 	<%@ include file="/componentes/navbar.jsp"%>
 
 	<div>
@@ -20,6 +20,10 @@
 			mejor precio.</p>
 
 	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
-</body>
+
 </html>

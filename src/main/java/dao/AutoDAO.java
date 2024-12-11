@@ -13,7 +13,32 @@ public class AutoDAO implements AutoDao {
 
 	@Override
 	public void registrarAuto(Auto auto) {
+		String sql = "INSERT INTO autos (marca, modelo, anio, color, matricula, precio_por_dia, estado, img) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
+		try (Connection conn = ConexionBD.getConexion();) {
+			 PreparedStatement stmt = conn.prepareStatement(sql);
+			// Prepara la sentencia
+			stmt = conn.prepareStatement(sql);
+
+			// Asigna los valores de la entidad `auto` a los parámetros de la sentencia
+			stmt.setString(1, auto.getMarca()); // Marca
+			stmt.setString(2, auto.getModelo()); // Modelo
+			stmt.setString(3, auto.getAnio()); // Año
+			stmt.setString(4, auto.getColor()); // Color
+			stmt.setString(5, auto.getMatricula()); // Matrícula
+			stmt.setDouble(6, auto.getPrecio_dia()); // Precio por día
+			stmt.setString(7, auto.getEstado()); // Estado
+			stmt.setString(8, auto.getImg()); // Imagen
+
+			// Ejecuta el INSERT
+			stmt.executeUpdate();
+
+			
+			System.out.println("Auto agregado correctamente");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	@Override
@@ -35,8 +60,6 @@ public class AutoDAO implements AutoDao {
 		}
 
 	}
-
-	
 
 	@Override
 	public void eliminarAuto(int id) {
@@ -78,16 +101,14 @@ public class AutoDAO implements AutoDao {
 		// TODO Auto-generated method stub
 		return autos;
 	}
-	
 
-	
 	public Auto obtenerAuto(int id) {
 		Auto auto = null;
 		String sql = "SELECT * FROM autos WHERE id_auto = ?";
 		try (Connection conn = ConexionBD.getConexion(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-			
+
 			if (rs.next()) {
 				int id_auto = rs.getInt("id_auto");
 				String marca = rs.getString("marca");
@@ -100,16 +121,16 @@ public class AutoDAO implements AutoDao {
 				String img = rs.getString("img");
 
 				auto = new Auto(id_auto, marca, modelo, anio, color, matricula, precioDia, estado, img);
-				
+
 			}
 			return auto;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-		
+
 	}
-	
+
 	public void cambiarEstado(int id, String estado) {
 		String sql = "UPDATE autos SET estado = ? WHERE id_auto = ?";
 		try (Connection conn = ConexionBD.getConexion(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -120,6 +141,5 @@ public class AutoDAO implements AutoDao {
 			e.printStackTrace();
 		}
 	}
-
 
 }
