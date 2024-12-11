@@ -44,7 +44,7 @@ public class Controlador extends HttpServlet {
 		if (usuario == null) {
 			response.sendRedirect("paginas/login.jsp");
 		} else {
-			if (usuario.getRol().equals("administrador")) {
+			if (usuario.getRol().equals("administrador") || usuario.getRol().equals("Administrador")) {
 				String action = request.getParameter("action");
 				String dispatcher = "";
 				// Redirige según el valor de "action"

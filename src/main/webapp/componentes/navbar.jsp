@@ -35,6 +35,10 @@
 				href="${pageContext.request.contextPath}/paginas/AlquilarAuto.jsp"
 				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Alquilar
 					Auto</a></li>
+					<li><a
+				href="${pageContext.request.contextPath}/cliente"
+				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Alquilar
+					Auto</a></li>
 		</ul>
 		<!-- Botón de cerrar sesión -->
 		<div class="text-center py-5">

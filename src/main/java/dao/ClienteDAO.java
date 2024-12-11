@@ -15,14 +15,14 @@ public class ClienteDAO {
         ArrayList<Cliente> clientes = new ArrayList<>();
         String sql = "SELECT * FROM clientes";
 
-        try (Connection conn = ConexionBD.getConnection();
+        try (Connection conn = ConexionBD.getConexion();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                int id = rs.getInt("id");
+                int id = rs.getInt("id_cliente");
                 String nombre = rs.getString("nombre");
-                String documento = rs.getString("documento");
+                String documento = rs.getString("documento_identidad");
                 String direccion = rs.getString("direccion");
                 int telefono = rs.getInt("telefono");
                 String correo = rs.getString("correo");
@@ -41,7 +41,7 @@ public class ClienteDAO {
         Cliente cliente = null;
         String sql = "SELECT * FROM clientes WHERE id = ?";
 
-        try (Connection conn = ConexionBD.getConnection();
+        try (Connection conn = ConexionBD.getConexion();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, id);

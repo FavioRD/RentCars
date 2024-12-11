@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page import="modelo.clases.Cliente" %>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,21 +17,28 @@
                 <th>Documento</th>
                 <th>Dirección</th>
                 <th>Teléfono</th>
-                <th>Correo</th>gg
+                <th>Correo</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Iterar sobre la lista de clientes que se pasa como atributo -->
-            <c:forEach var="cliente" items="${clientes}">
-                <tr>
-                    <td>${cliente.id}</td>
-                    <td>${cliente.nombre}</td>
-                    <td>${cliente.documento}</td>
-                    <td>${cliente.direccion}</td>
-                    <td>${cliente.telefono}</td>
-                    <td>${cliente.correo}</td>
-                </tr>
-            </c:forEach>
+            <%
+			// Obtenemos la lista de autos del request
+			ArrayList<Cliente> clientes = (ArrayList<Cliente>) request.getAttribute("clientes");
+			if (clientes != null) {
+				for (Cliente cliente: clientes) {
+			%>
+			<tr>
+				<td><%=cliente.getId()%></td>
+				<td><%=cliente.getNombre()%></td>
+				<td><%=cliente.getDocumento()%></td>
+				<td><%=cliente.getDireccion()%></td>
+				<td><%=cliente.getTelefono()%></td>
+				<td><%=cliente.getCorreo()%></td>
+			</tr>
+			<%
+			}
+			}
+			%>
         </tbody>
     </table>
 </body>

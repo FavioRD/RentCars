@@ -26,7 +26,7 @@ public class Clientes extends HttpServlet {
         try {
             List<Cliente> listaClientes = clienteDAO.listarClientes();
             request.setAttribute("clientes", listaClientes); 
-            request.getRequestDispatcher("/MostrarClientes.jsp").forward(request, response);
+            request.getRequestDispatcher("paginas/MostrarClientes.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Ocurrió un error al obtener la lista de clientes.");

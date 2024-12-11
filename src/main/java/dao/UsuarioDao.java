@@ -50,7 +50,7 @@ public class UsuarioDao implements IUsuario {
 
 			Usuario usuarioLogueado = null;
 			if (rs.next()) {
-				int idUsuario = rs.getInt("id"); 
+				int idUsuario = rs.getInt("id_usuario"); 
 				String usuarioBD = rs.getString("usuario");
 				String contrasenaBD = rs.getString("contrasena");
 				String nombre = rs.getString("nombre");
