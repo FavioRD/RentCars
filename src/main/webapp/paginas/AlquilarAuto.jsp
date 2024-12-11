@@ -11,101 +11,152 @@ Auto auto = (Auto) request.getAttribute("auto");
 <head>
 <meta charset="UTF-8">
 <title>Alquilar Auto</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
-<body>
-	<form action="alquilarAuto" method="post">
+<body class="bg-light">
+	<div class="container py-5">
+		<div class="row justify-content-center">
+			<div class="col-lg-6 col-md-8 col-sm-10">
+				<div class="card shadow-sm">
+					<div class="card-header bg-primary text-white text-center">
+						<h3>Alquilar Auto</h3>
+					</div>
+					<div class="card-body">
+						<form action="alquilarAuto" method="post" class="needs-validation"
+							novalidate>
+							<!-- Selección de cliente -->
+							<div class="mb-3">
+								<label for="id_cliente" class="form-label">Cliente</label> <select
+									id="id_cliente" name="id_cliente" class="form-select" required>
+									<%
+									List<Cliente> clientes = (List<Cliente>) request.getAttribute("clientes");
+									%>
+									<%
+									if (clientes != null) {
+									%>
+									<%
+									for (Cliente c : clientes) {
+									%>
+									<option value="<%=c.getId()%>"><%=c.getNombre()%></option>
+									<%
+									}
+									%>
+									<%
+									}
+									%>
+								</select>
+								<div class="invalid-feedback">Por favor, selecciona un
+									cliente.</div>
+							</div>
 
-		<!-- Campo para ingresar el cliente -->
+							<!-- Información del auto -->
+							<div class="mb-3">
+								<label for="auto" class="form-label">Auto</label> <input
+									type="text" id="auto" name="auto" class="form-control"
+									value="<%=auto.getMarca() + ' ' + auto.getModelo() + ' ' + auto.getMatricula()%>"
+									disabled>
+							</div>
 
-		<label for="id_cliente">Cliente:</label> <select id="id_cliente"
-			name="id_cliente">
-			<%
-			List<Cliente> clientes = (List<Cliente>) request.getAttribute("clientes");
-			if (clientes != null) {
-				for (Cliente c : clientes) {
-			%>
-			<option value="<%=c.getId()%>"><%=c.getNombre()%></option>
-			<%
-			}
-			}
-			%>
-			
-		
+							<input type="hidden" name="id_auto" value="<%=auto.getId()%>">
 
-		</select>
+							<!-- Fechas de alquiler -->
+							<div class="mb-3">
+								<label for="fecha_inicio" class="form-label">Fecha de
+									Inicio</label> <input type="date" id="fecha_inicio" name="fecha_inicio"
+									class="form-control" required>
+								<div class="invalid-feedback">Por favor, ingresa la fecha
+									de inicio.</div>
+							</div>
 
-		<!-- Campo para ingresar el auto -->
-		<label for="auto">Auto:</label> <input name="auto" type="text"
-			id="auto"
-			value="<%=auto.getMarca() + " " + auto.getModelo() + " " + auto.getMatricula()%>"
-			disabled> <br> <br>
+							<div class="mb-3">
+								<label for="fecha_fin" class="form-label">Fecha de Fin</label> <input
+									type="date" id="fecha_fin" name="fecha_fin"
+									class="form-control" required>
+								<div class="invalid-feedback">Por favor, ingresa la fecha
+									de fin.</div>
+							</div>
 
-		<!-- Campo para ingresar el id_auto -->
-		<input name="id_auto" type="hidden" value="<%=auto.getId()%>">
+							<!-- Precio por día y total -->
+							<div class="mb-3">
+								<label for="precio_por_dia" class="form-label">Precio
+									por Día</label> <input type="number" id="precio_por_dia"
+									name="precio_por_dia" class="form-control"
+									value="<%=auto.getPrecio_dia()%>" disabled>
+							</div>
 
+							<div class="mb-3">
+								<label for="precio_total" class="form-label">Precio
+									Total</label> <input type="number" id="precio_total"
+									name="precio_total" class="form-control" step="0.01" required>
+								<div class="invalid-feedback">Por favor, ingresa el precio
+									total.</div>
+							</div>
 
-		<!-- Campo para la fecha de inicio del alquiler -->
-		<label for="fecha_inicio">Fecha de Inicio:</label> <input
-			name="fecha_inicio" type="date" id="fecha_inicio" required> <br>
-		<br>
+							<!-- Estado del alquiler -->
+							<div class="mb-3">
+								<label for="estado_alquiler" class="form-label">Estado
+									del Alquiler</label> <select id="estado_alquiler"
+									name="estado_alquiler" class="form-select" required>
+									<option value="activo">Activo</option>
+									<option value="finalizado">Finalizado</option>
+									<option value="pendiente">Pendiente</option>
+								</select>
+								<div class="invalid-feedback">Por favor, selecciona el
+									estado del alquiler.</div>
+							</div>
 
-		<!-- Campo para la fecha de fin del alquiler -->
-		<label for="fecha_fin">Fecha de Fin:</label> <input name="fecha_fin"
-			type="date" id="fecha_fin" required> <br> <br>
+							<!-- Botón de envío -->
+							<button type="submit" class="btn btn-primary w-100">Alquilar
+								Auto</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-		<!-- Campo para ingresar el precio total del alquiler -->
-		<label for="precio_por_dia">Precio por dia:</label> <input
-			name="precio_por_dia" value="<%=auto.getPrecio_dia()%>" type="number"
-			step="0.01" id="precio_por_dia" disabled> <br> <br>
-
-
-		<!-- Campo para ingresar el precio total del alquiler -->
-		<label for="precio_total">Precio Total:</label> <input
-			name="precio_total" type="number" step="0.01"
-			id="precio_total"> <br> <br>
-
-
-		<!-- Campo para seleccionar el estado del alquiler -->
-		<label for="estado_alquiler">Estado del Alquiler:</label> <select
-			name="estado_alquiler" id="estado_alquiler" required>
-			<option value="activo">Activo</option>
-			<option value="finalizado">Finalizado</option>
-			<option value="pendiente">Pendiente</option>
-		</select> <br> <br>
-
-		<!-- Botón de envío -->
-		<button type="submit">Alquilar Auto</button>
-
-	</form>
-
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
-    // Obtener elementos del DOM
-    const fechaInicioInput = document.getElementById('fecha_inicio');
-    const fechaFinInput = document.getElementById('fecha_fin');
-    const precioPorDiaInput = document.getElementById('precio_por_dia');
-    const precioTotalInput = document.getElementById('precio_total');
+        // Calcular precio total dinámicamente
+        const fechaInicioInput = document.getElementById('fecha_inicio');
+        const fechaFinInput = document.getElementById('fecha_fin');
+        const precioPorDiaInput = document.getElementById('precio_por_dia');
+        const precioTotalInput = document.getElementById('precio_total');
 
-    // Función para calcular el precio total
-    function calcularPrecioTotal() {
-        const fechaInicio = new Date(fechaInicioInput.value);
-        const fechaFin = new Date(fechaFinInput.value);
-        const precioPorDia = parseFloat(precioPorDiaInput.value);
+        function calcularPrecioTotal() {
+            const fechaInicio = new Date(fechaInicioInput.value);
+            const fechaFin = new Date(fechaFinInput.value);
+            const precioPorDia = parseFloat(precioPorDiaInput.value);
 
-        // Verificar que las fechas sean válidas
-        if (!isNaN(fechaInicio) && !isNaN(fechaFin) && fechaFin >= fechaInicio) {
-            const diferenciaDias = (fechaFin - fechaInicio) / (1000 * 60 * 60 * 24); // Diferencia en días
-            const precioTotal = diferenciaDias * precioPorDia;
-
-            // Mostrar el precio total
-            precioTotalInput.value = precioTotal.toFixed(2);
-        } else {
-            precioTotalInput.value = ''; // Limpiar si las fechas son inválidas
+            if (!isNaN(fechaInicio) && !isNaN(fechaFin) && fechaFin >= fechaInicio) {
+                const diferenciaDias = (fechaFin - fechaInicio) / (1000 * 60 * 60 * 24);
+                const precioTotal = diferenciaDias * precioPorDia;
+                precioTotalInput.value = precioTotal.toFixed(2);
+            } else {
+                precioTotalInput.value = '';
+            }
         }
-    }
 
-    // Agregar eventos a los campos de fecha
-    fechaInicioInput.addEventListener('change', calcularPrecioTotal);
-    fechaFinInput.addEventListener('change', calcularPrecioTotal);
-</script>
+        fechaInicioInput.addEventListener('change', calcularPrecioTotal);
+        fechaFinInput.addEventListener('change', calcularPrecioTotal);
+
+        // Validación del formulario
+        (() => {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
 </body>
 </html>
