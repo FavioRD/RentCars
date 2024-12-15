@@ -10,14 +10,14 @@ public class Auto {
 	private double precio_dia;
 	private String estado;
 	private String img;
-	
+	private double kilometraje;
 	
 	public Auto() {
 		super();
 	}
 	
 	public Auto(int id, String marca, String modelo, String anio, String color, String matricula, double precio_dia,
-			String estado , String img) {
+			String estado , String img, double kilometraje) {
 		super();
 		this.id = id;
 		this.marca = marca;
@@ -28,6 +28,7 @@ public class Auto {
 		this.precio_dia = precio_dia;
 		this.estado = estado;
 		this.img = img;
+		this.kilometraje = kilometraje;
 	}
 	public int getId() {
 		return id;
@@ -84,6 +85,14 @@ public class Auto {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+	
+	public double getKilometraje() {
+		return kilometraje;
+	}
+	
+	public void setKilometraje(double kilometraje) {
+		this.kilometraje = kilometraje;
 	}
 	
 	public String toString() {

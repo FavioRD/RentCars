@@ -20,7 +20,7 @@
 		<!-- Contenedor de la tabla -->
 		<div class="container-fluid p-4"
 			style="flex-grow: 1; overflow-y: auto;">
-			<h2 class="text-center mb-4 text-dark">Listado de Clientes</h2>
+			<h2 class="text-center mb-4 text-dark">Mantenimiento de Clientes</h2>
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover">
 					<thead class="thead-dark">

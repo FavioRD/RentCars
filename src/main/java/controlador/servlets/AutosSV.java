@@ -135,8 +135,9 @@ public class AutosSV extends HttpServlet {
 		double precioDia = Double.parseDouble(request.getParameter("precioDia"));
 		String estado = request.getParameter("estado");
 		String img = request.getParameter("img");
+		double kilometraje = Double.parseDouble(request.getParameter("kilometraje"));
 
-		Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img);
+		Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img, kilometraje);
 
 		return auto;
 	}

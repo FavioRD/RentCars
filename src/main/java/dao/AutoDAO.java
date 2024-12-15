@@ -13,11 +13,11 @@ public class AutoDAO implements AutoDao {
 
 	@Override
 	public void registrarAuto(Auto auto) {
-		String sql = "INSERT INTO autos (marca, modelo, anio, color, matricula, precio_por_dia, estado, img) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO autos (marca, modelo, anio, color, matricula, precio_por_dia, estado, img, kilometraje) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try (Connection conn = ConexionBD.getConexion();) {
-			 PreparedStatement stmt = conn.prepareStatement(sql);
+			PreparedStatement stmt = conn.prepareStatement(sql);
 			// Prepara la sentencia
 			stmt = conn.prepareStatement(sql);
 
@@ -30,11 +30,11 @@ public class AutoDAO implements AutoDao {
 			stmt.setDouble(6, auto.getPrecio_dia()); // Precio por día
 			stmt.setString(7, auto.getEstado()); // Estado
 			stmt.setString(8, auto.getImg()); // Imagen
+			stmt.setDouble(9, auto.getKilometraje()); // Kilometra
 
 			// Ejecuta el INSERT
 			stmt.executeUpdate();
 
-			
 			System.out.println("Auto agregado correctamente");
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -91,8 +91,9 @@ public class AutoDAO implements AutoDao {
 				double precioDia = rs.getDouble("precio_por_dia");
 				String estado = rs.getString("estado");
 				String img = rs.getString("img");
-
-				Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img);
+				double kilometraje = rs.getDouble("kilometraje");
+				
+				Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img, kilometraje);
 				autos.add(auto);
 			}
 		} catch (Exception e) {
@@ -119,8 +120,8 @@ public class AutoDAO implements AutoDao {
 				double precioDia = rs.getDouble("precio_por_dia");
 				String estado = rs.getString("estado");
 				String img = rs.getString("img");
-
-				auto = new Auto(id_auto, marca, modelo, anio, color, matricula, precioDia, estado, img);
+				double kilometraje = rs.getDouble("kilometraje");
+				auto = new Auto(id_auto, marca, modelo, anio, color, matricula, precioDia, estado, img, kilometraje);
 
 			}
 			return auto;

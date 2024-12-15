@@ -48,6 +48,8 @@
 						<li><strong>Marca:</strong> <%=auto.getMarca()%></li>
 						<li><strong>Color:</strong> <%=auto.getColor()%></li>
 						<li><strong>Año:</strong> <%=auto.getAnio()%></li>
+						<li><strong>Kilometraje:</strong> <%=auto.getKilometraje()%>
+							KM</li>
 						<li><strong>Precio por Día:</strong> <%=auto.getPrecio_dia()%>
 							USD</li>
 					</ul>

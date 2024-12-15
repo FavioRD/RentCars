@@ -1,3 +1,4 @@
+
 <%@page import="modelo.clases.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -40,6 +41,11 @@
 						<li><a class="dropdown-item" href="autos?action=agregarAuto">Agregar
 								Auto</a></li>
 						<li><a class="dropdown-item" href="#">Borrar Auto</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/autos?action=verAutos"
+							class="dropdown-item">Listar
+								Autos</a></li>
+						<li>
 					</ul>
 				</div>
 			</li>
@@ -48,23 +54,17 @@
 			}
 			%>
 
-			<li><a
-				href="${pageContext.request.contextPath}/autos?action=verAutos"
-				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Listar
-					Autos</a></li>
-			<li><a
+			<a
 				href="${pageContext.request.contextPath}/paginas/VerAlquilados.jsp"
 				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Ver
-					Autos Alquilados</a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/paginas/AlquilarAuto.jsp"
-				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Alquilar
-					Auto</a></li>
+				Autos Alquilados</a>
+			</li>
+
 			<li><a href="${pageContext.request.contextPath}/cliente"
 				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Alquilar
 					Auto</a></li>
 			<li><a href="${pageContext.request.contextPath}/cliente"
-				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Listar
+				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Mantenimiento
 					Clientes</a></li>
 		</ul>
 
