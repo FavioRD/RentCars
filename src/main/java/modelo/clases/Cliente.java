@@ -5,10 +5,10 @@ public class Cliente {
 	private String Nombre;
 	private String Documento;
 	private String  Direccion;
-	private int Telefono;
+	private String Telefono;
 	private String Correo;
 	
-	public Cliente(int id, String nombre, String documento, String direccion, int telefono, String correo) {
+	public Cliente(int id, String nombre, String documento, String direccion, String telefono, String correo) {
 		super();
 		this.id = id;
 		Nombre = nombre;
@@ -50,11 +50,11 @@ public class Cliente {
 		Direccion = direccion;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return Telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		Telefono = telefono;
 	}
 

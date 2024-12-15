@@ -39,6 +39,7 @@
 						<%
 						// Obtenemos la lista de clientes del request
 						ArrayList<Cliente> clientes = (ArrayList<Cliente>) request.getAttribute("clientes");
+						
 						if (clientes != null) {
 							for (Cliente cliente : clientes) {
 						%>
