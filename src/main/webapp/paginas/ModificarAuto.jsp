@@ -88,6 +88,13 @@ Auto auto = (Auto) request.getAttribute("auto");
                                 <input type="text" id="img" name="img" class="form-control" value="<%=auto.getImg()%>" required>
                                 <div class="invalid-feedback">Por favor, ingresa el URL de la imagen.</div>
                             </div>
+                            
+                            <div class="mb-3">
+                                <label for="kilometraje" class="form-label">Kilometraje</label>
+                                <input type="number" id="kilometraje" name="kilometraje" class="form-control" value="<%=auto.getKilometraje()%>" required>
+                                <div class="invalid-feedback">Por favor, ingresa un kilometraje valido</div>
+                            </div>
+                            
 
                             <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
                         </form>

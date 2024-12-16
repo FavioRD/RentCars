@@ -67,14 +67,14 @@
 					if (estado.equals("Disponible")) {
 					%>
 					<!-- Botón para alquilar si el auto está disponible -->
-					<a href="alquilarAuto?id=<%=auto.getId()%>"
+					<a href="alquilarAuto?accion=alquilar&id=<%=auto.getId()%>"
 						class="btn btn-primary w-100 mt-3" style="border-radius: 25px;">
 						Alquilar </a>
 					<%
 					} else if (estado.equals("Alquilado")) {
 					%>
 					<!-- Botón de opciones si el auto está alquilado -->
-					<a href="opcionesAuto?id=<%=auto.getId()%>"
+					<a href="alquilarAuto?accion=opcionAlquiler&id_auto=<%=auto.getId()%>"
 						class="btn btn-secondary w-100 mt-3" style="border-radius: 25px;">
 						Opciones de Alquiler </a>
 					<%

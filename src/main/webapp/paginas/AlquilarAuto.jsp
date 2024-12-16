@@ -24,7 +24,7 @@ Auto auto = (Auto) request.getAttribute("auto");
 						<h3>Alquilar Auto</h3>
 					</div>
 					<div class="card-body">
-						<form action="alquilarAuto" method="post" class="needs-validation"
+						<form action="alquilarAuto?accion=alquilar" method="post" class="needs-validation"
 							novalidate>
 							<!-- Selección de cliente -->
 							<div class="mb-3">
