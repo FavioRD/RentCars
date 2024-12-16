@@ -14,10 +14,10 @@ public class ClienteDAO {
 	public void agregarCliente(Cliente cliente) {
 	    String sql = "INSERT INTO clientes(nombre, documento_identidad, direccion, telefono, correo) "
 	               + "VALUES(?, ?, ?, ?, ?)";
-	    
+
 	    try (Connection conn = ConexionBD.getConexion(); 
 	         PreparedStatement stmn = conn.prepareStatement(sql)) {
-	        
+
 	        stmn.setString(1, cliente.getNombre());
 	        stmn.setString(2, cliente.getDocumento());
 	        stmn.setString(3, cliente.getDireccion());
@@ -25,11 +25,11 @@ public class ClienteDAO {
 	        stmn.setString(5, cliente.getCorreo());
 
 	        stmn.executeUpdate();
-	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
 	}
+
 
 	public void modificarCliente(Cliente cliente) {
         String sql = "UPDATE clientes SET nombre = ?, documento_identidad = ?, direccion = ?, telefono = ?, correo = ? WHERE id_cliente = ?";
