@@ -92,7 +92,7 @@ public class AutoDAO implements AutoDao {
 				String estado = rs.getString("estado");
 				String img = rs.getString("img");
 				double kilometraje = rs.getDouble("kilometraje");
-				
+
 				Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img, kilometraje);
 				autos.add(auto);
 			}
@@ -143,4 +143,33 @@ public class AutoDAO implements AutoDao {
 		}
 	}
 
+	public ArrayList<Auto> listarAlquilados() {
+		ArrayList<Auto> autos = new ArrayList<Auto>();
+		String sql = "SELECT * FROM autos WHERE estado = 'Alquilado'";
+		try (Connection conn = ConexionBD.getConexion();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+
+			while (rs.next()) {
+				int id = rs.getInt("id_auto");
+				String marca = rs.getString("marca");
+				String modelo = rs.getString("modelo");
+				String anio = rs.getString("anio");
+				String color = rs.getString("color");
+				String matricula = rs.getString("matricula");
+				double precioDia = rs.getDouble("precio_por_dia");
+				String estado = rs.getString("estado");
+				String img = rs.getString("img");
+				double kilometraje = rs.getDouble("kilometraje");
+
+				Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img, kilometraje);
+				autos.add(auto);
+				System.out.println(auto);
+			}
+			return autos;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
