@@ -33,7 +33,6 @@
 								<th>Matricula</th>
 								<th>Precio</th>
 								<th>Estado</th>
-								<th>Referencia</th>
 								<th>Kilometraje</th>
 							</tr>
 						</thead>
@@ -52,7 +51,6 @@
 								<td><%=auto.getMatricula()%></td>
 								<td><%=auto.getPrecio_dia()%></td>
 								<td><%=auto.getEstado()%></td>
-								<td><%=auto.getImg()%></td>
 								<td><%=auto.getKilometraje()%></td>
 							</tr>
 							<%

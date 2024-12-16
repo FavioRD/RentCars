@@ -55,7 +55,7 @@
 			%>
 
 			<a
-				href="${pageContext.request.contextPath}/paginas/VerAlquilados.jsp"
+				href="autos?action=verAlquilados"
 				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Ver
 				Autos Alquilados</a>
 			</li>

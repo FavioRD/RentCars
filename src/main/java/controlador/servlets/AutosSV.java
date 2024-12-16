@@ -73,7 +73,7 @@ public class AutosSV extends HttpServlet {
 				case "verAlquilados":
 					ArrayList<Auto> autosAlquilados = autoDAO.listarAlquilados();
 					request.setAttribute("autos", autosAlquilados);
-					dispatcher = "/paginas/verAlquilados.jsp";
+					dispatcher = "/paginas/VerAlquilados.jsp";
 					request.getRequestDispatcher(dispatcher).forward(request, response);
 					break;
 				}
