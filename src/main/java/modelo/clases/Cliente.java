@@ -17,6 +17,10 @@ public class Cliente {
 		Telefono = telefono;
 		Correo = correo;
 	}
+	
+	public Cliente() {
+	}
+
 
 	public int getId() {
 		return id;

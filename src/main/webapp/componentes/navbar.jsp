@@ -1,4 +1,3 @@
-
 <%@page import="modelo.clases.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -65,6 +64,8 @@
 			<li><a href="${pageContext.request.contextPath}/cliente"
 				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Mantenimiento
 					Clientes</a></li>
+					<li><a href="${pageContext.request.contextPath}/cliente?action=agregarCliente"
+				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Agregar Cliente</a></li>
 
 			<li>
 				<div class="dropdown">
