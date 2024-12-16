@@ -43,7 +43,7 @@ public class AutoDAO implements AutoDao {
 
 	@Override
 	public void modificarAuto(int id, Auto auto) {
-		String sql = "UPDATE autos SET marca = ?, modelo = ?, anio = ?, color = ?, matricula = ?, precio_por_dia = ?, estado = ?, img = ? WHERE id_auto = ?";
+		String sql = "UPDATE autos SET marca = ?, modelo = ?, anio = ?, color = ?, matricula = ?, precio_por_dia = ?, estado = ?, img = ?, kilometraje = ? WHERE id_auto = ?";
 		try (Connection conn = ConexionBD.getConexion(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, auto.getMarca());
 			stmt.setString(2, auto.getModelo());
@@ -53,10 +53,13 @@ public class AutoDAO implements AutoDao {
 			stmt.setDouble(6, auto.getPrecio_dia());
 			stmt.setString(7, auto.getEstado());
 			stmt.setString(8, auto.getImg());
-			stmt.setInt(9, id);
+			stmt.setDouble(9, auto.getKilometraje());
+			stmt.setInt(10, id);
+			
 			stmt.executeUpdate();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Error al modificar auto");
+			System.out.println(e.getMessage());
 		}
 
 	}

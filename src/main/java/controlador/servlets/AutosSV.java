@@ -109,7 +109,6 @@ public class AutosSV extends HttpServlet {
 		Auto auto = recuperarParametrosAuto(request);
 		autoDAO.modificarAuto(auto.getId(), auto);
 		response.sendRedirect("autos?action=verAutos");
-		// TODO Auto-generated method stub
 	}
 
 	/**
