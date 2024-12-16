@@ -72,6 +72,7 @@ public class AlquilarSV extends HttpServlet {
 
 			response.sendRedirect("paginas/FinalizarAlquiler.jsp");
 			break;
+		
 		}
 
 	}
