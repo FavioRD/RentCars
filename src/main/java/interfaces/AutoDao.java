@@ -17,4 +17,6 @@ public interface AutoDao {
 	
 	public void cambiarEstado(int id, String estado);
 	
+	
+	public ArrayList<Auto> buscarAutosConMasKilometraje();
 }

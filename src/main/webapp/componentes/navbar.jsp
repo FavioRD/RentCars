@@ -43,8 +43,7 @@
 						<li><a class="dropdown-item" href="#">Borrar Auto</a></li>
 						<li><a
 							href="${pageContext.request.contextPath}/autos?action=verAutos"
-							class="dropdown-item">Listar
-								Autos</a></li>
+							class="dropdown-item">Listar Autos</a></li>
 						<li>
 					</ul>
 				</div>
@@ -66,6 +65,19 @@
 			<li><a href="${pageContext.request.contextPath}/cliente"
 				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Mantenimiento
 					Clientes</a></li>
+
+			<li>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						data-bs-toggle="dropdown" aria-expanded="false">
+						Reportes</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="autos?action=autosConMasKilometraje">Autos con mas kilometraje</a></li>
+						<li><a class="dropdown-item" href="#">Clientes que mas veces alquilaron</a></li>
+						
+					</ul>
+				</div>
+			</li>
 		</ul>
 
 		<div class="text-center py-4 border-top">

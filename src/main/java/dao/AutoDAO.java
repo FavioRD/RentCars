@@ -55,7 +55,7 @@ public class AutoDAO implements AutoDao {
 			stmt.setString(8, auto.getImg());
 			stmt.setDouble(9, auto.getKilometraje());
 			stmt.setInt(10, id);
-			
+
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al modificar auto");
@@ -95,7 +95,7 @@ public class AutoDAO implements AutoDao {
 				String estado = rs.getString("estado");
 				String img = rs.getString("img");
 				double kilometraje = rs.getDouble("kilometraje");
-				
+
 				Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img, kilometraje);
 				autos.add(auto);
 			}
@@ -144,6 +144,31 @@ public class AutoDAO implements AutoDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ArrayList<Auto> buscarAutosConMasKilometraje() {
+		String sql = "{CALL AutosConMayorKilometraje()}";
+		ArrayList<Auto> autos = new ArrayList<Auto>();
+		try (Connection conn = ConexionBD.getConexion();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+			while (rs.next()) {
+				int id = rs.getInt("id_auto");
+				String marca = rs.getString("marca");
+				String modelo = rs.getString("modelo");
+				String matricula = rs.getString("matricula");
+				double kilometraje = rs.getDouble("kilometraje");
+
+				Auto auto = new Auto(id, marca, modelo, matricula, kilometraje);
+				autos.add(auto);
+			}
+			return autos;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 }

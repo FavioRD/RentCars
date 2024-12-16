@@ -73,6 +73,12 @@ public class AutosSV extends HttpServlet {
 				case "verAlquilados":
 					dispatcher = "/paginas/verAlquilados.jsp";
 					break;
+				case "autosConMasKilometraje":
+					ArrayList<Auto> autosConMasKilometraje = autoDAO.buscarAutosConMasKilometraje();
+					request.setAttribute("listaAutos", autosConMasKilometraje);
+					dispatcher = "/paginas/ReporteAutosMasKilometraje.jsp";
+					request.getRequestDispatcher(dispatcher).forward(request, response);
+					break;
 				}
 			}
 		}
@@ -89,7 +95,7 @@ public class AutosSV extends HttpServlet {
 
 		switch (action != null ? action : "") {
 		case "modificarAuto":
-			doPut(request,response);
+			doPut(request, response);
 			break;
 		case "agregarAuto":
 			Auto autoAgregado = recuperarParametrosAuto(request);

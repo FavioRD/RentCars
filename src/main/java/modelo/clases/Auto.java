@@ -11,13 +11,24 @@ public class Auto {
 	private String estado;
 	private String img;
 	private double kilometraje;
-	
+
 	public Auto() {
 		super();
 	}
-	
+
+//	Constructor para listar autos con mas kilometraje
+	public Auto(int id, String marca, String modelo, String matricula, double kilometraje) {
+		super();
+		this.id = id;
+		this.marca = marca;
+		this.modelo = modelo;
+		this.matricula = matricula;
+		this.kilometraje = kilometraje;
+
+	}
+
 	public Auto(int id, String marca, String modelo, String anio, String color, String matricula, double precio_dia,
-			String estado , String img, double kilometraje) {
+			String estado, String img, double kilometraje) {
 		super();
 		this.id = id;
 		this.marca = marca;
@@ -30,55 +41,71 @@ public class Auto {
 		this.img = img;
 		this.kilometraje = kilometraje;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getMarca() {
 		return marca;
 	}
+
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
+
 	public String getModelo() {
 		return modelo;
 	}
+
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
+
 	public String getAnio() {
 		return anio;
 	}
+
 	public void setAnio(String anio) {
 		this.anio = anio;
 	}
+
 	public String getColor() {
 		return color;
 	}
+
 	public void setColor(String color) {
 		this.color = color;
 	}
+
 	public String getMatricula() {
 		return matricula;
 	}
+
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
+
 	public double getPrecio_dia() {
 		return precio_dia;
 	}
+
 	public void setPrecio_dia(double precio_dia) {
 		this.precio_dia = precio_dia;
 	}
+
 	public String getEstado() {
 		return estado;
 	}
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+
 	public String getImg() {
 		return img;
 	}
@@ -86,26 +113,19 @@ public class Auto {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
+
 	public double getKilometraje() {
 		return kilometraje;
 	}
-	
+
 	public void setKilometraje(double kilometraje) {
 		this.kilometraje = kilometraje;
 	}
-	
+
 	public String toString() {
-        return "Auto{" +
-               "id=" + id +
-               ", marca='" + marca + '\'' +
-               ", modelo='" + modelo + '\'' +
-               ", anio=" + anio +
-               ", matricula='" + matricula + '\'' +
-               ", color='" + color + '\'' +
-               ", estado='" + estado + '\'' +
-               ", precioPorDia=" + precio_dia +
-               '}';
-    }
-	
+		return "Auto{" + "id=" + id + ", marca='" + marca + '\'' + ", modelo='" + modelo + '\'' + ", anio=" + anio
+				+ ", matricula='" + matricula + '\'' + ", color='" + color + '\'' + ", estado='" + estado + '\''
+				+ ", precioPorDia=" + precio_dia + '}';
+	}
+
 }
