@@ -98,7 +98,7 @@ public class ClientesSV extends HttpServlet {
 			break;
 
 		case "modificarCliente":
-            // Recuperamos los parámetros del formulario
+
             int id = Integer.parseInt(request.getParameter("id"));
             String nombre = request.getParameter("nombre");
             String documento = request.getParameter("documento");
@@ -106,14 +106,11 @@ public class ClientesSV extends HttpServlet {
             String telefono = request.getParameter("telefono");
             String correo = request.getParameter("correo");
 
-            // Creamos un objeto Cliente con los datos modificados
             Cliente clienteModificado = new Cliente(id, nombre, documento, direccion, telefono, correo);
 
-            // Llamamos al método de la capa de datos para modificar el cliente
             ClienteDAO clienteDAO = new ClienteDAO();
             clienteDAO.modificarCliente(clienteModificado);
 
-            // Redirigimos al listado de clientes
             response.sendRedirect("cliente?action=listarCliente");
             break;
 		case "borrarCliente":
