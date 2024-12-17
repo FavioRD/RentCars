@@ -10,7 +10,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 </head>
-<body>
+<body class="d-flex w-100" style="height: 100vh; overflow: hidden;">
+    <%@ include file="/componentes/navbar.jsp"%>
 	<div class="container mt-5">
 		<div class="row justify-content-center">
 			<div class="col-lg-6 col-md-8">

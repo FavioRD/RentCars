@@ -16,7 +16,8 @@
 	integrity="sha384-KyZXEJr+udz4p5+TY3P2o6h4z0BjpDPI6xj4wXYhFmwzV4M3Hv3r5Sgr9JHhKlVt"
 	crossorigin="anonymous">
 </head>
-<body>
+<body class="d-flex w-100" style="height: 100vh; overflow: hidden;">
+    <%@ include file="/componentes/navbar.jsp"%>
 	<div class="container mt-5">
 		<h1 class="text-center mb-4">Lista de Clientes</h1>
 

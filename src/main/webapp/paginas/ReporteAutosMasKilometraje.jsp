@@ -10,7 +10,8 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex w-100" style="height: 100vh; overflow: hidden;">
+    <%@ include file="/componentes/navbar.jsp"%>
 <div class="container mt-5">
     <h1 class="text-center">Autos con Mayor Kilometraje</h1>
     <table class="table table-striped table-bordered mt-4">
