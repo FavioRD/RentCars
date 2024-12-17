@@ -19,12 +19,12 @@
 <body class="d-flex w-100" style="height: 100vh; overflow: hidden;">
     <%@ include file="/componentes/navbar.jsp"%>
 	<div class="container mt-5">
-		<h1 class="text-center mb-4">Lista de Clientes</h1>
+		<h1 class="text-center mb-4">Lista de clientes que mas veces alquilaron</h1>
 
 		<!-- Tabla con estilo de Bootstrap -->
 		<div class="table-responsive">
 			<table
-				class="table table-striped table-bordered table-hover shadow-lg">
+				class="table table-striped table-bordered table-hover">
 				<thead class="thead-dark bg-primary text-white">
 					<tr>
 						<th>#</th>

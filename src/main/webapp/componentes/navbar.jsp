@@ -33,7 +33,7 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             style="width: 100px; height: 100px; object-fit: cover"
           />
         </a>
-        <h5 class="mt-2">Rent Car</h5>
+        <h5 class="mt-2">RentCar</h5>
       </div>
 
       <!-- Menu Items -->
@@ -51,11 +51,7 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <i class="bi bi-plus-circle me-2"></i> Agregar Auto
           </a>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link text-dark ps-3">
-            <i class="bi bi-trash me-2"></i> Borrar Auto
-          </a>
-        </li>
+
         <li class="nav-item">
           <a
             href="${pageContext.request.contextPath}/autos?action=verAutos"

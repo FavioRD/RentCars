@@ -12,7 +12,7 @@
 	rel="stylesheet"
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous">
-<title>Insert title here</title>
+<title>Inicio - RentCar</title>
 </head>
 <body class="d-flex"
 	style="min-height: 100vh; background-color: #f8f9fa;">
@@ -29,7 +29,7 @@
 	<!-- Contenedor principal -->
 	<div class="container my-5">
 		<header class="py-4 text-center">
-			<h1 class="fw-bold">Bienvenido a Rent Car</h1>
+			<h1 class="fw-bold">Bienvenido a RentCar</h1>
 			<p>En Rent Car podrás alquilar autos de la mejor calidad y al
 				mejor precio.</p>
 		</header>
