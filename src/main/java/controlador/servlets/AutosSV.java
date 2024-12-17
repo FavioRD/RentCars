@@ -57,7 +57,12 @@ public class AutosSV extends HttpServlet {
 					request.getRequestDispatcher(dispatcher).forward(request, response);
 					break;
 				case "borrarAuto":
-					doDelete(request, response);
+					int idAuto = Integer.parseInt(request.getParameter("id"));
+					Auto autoBorrado = autoDAO.obtenerAuto(idAuto);
+					request.setAttribute("auto", autoBorrado);
+					System.out.println("Auto a borrar: " + idAuto);
+					dispatcher = "/paginas/BorrarAuto.jsp";
+					request.getRequestDispatcher(dispatcher).forward(request, response);
 					break;
 				case "agregarAuto":
 					dispatcher = "/paginas/AgregarAuto.jsp";
@@ -82,7 +87,6 @@ public class AutosSV extends HttpServlet {
 					dispatcher = "/paginas/ReporteAutosMasKilometraje.jsp";
 					request.getRequestDispatcher(dispatcher).forward(request, response);
 					break;
-
 				}
 			}
 		}
@@ -105,6 +109,9 @@ public class AutosSV extends HttpServlet {
 			Auto autoAgregado = recuperarParametrosAuto(request);
 			autoDAO.registrarAuto(autoAgregado);
 			response.sendRedirect("autos?action=verAutos");
+		case "borrarAuto":
+			doDelete(request, response);
+			break;
 		default:
 			break;
 		}
@@ -129,9 +136,9 @@ public class AutosSV extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		response.getWriter().append("Auto eliminado");
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/paginas/verAutos.jsp");
-		dispatcher.forward(request, response);
-
+		autoDAO.eliminarAuto(id);
+	
+	     response.sendRedirect("autos?action=verAutos");
 	}
 
 	private Auto recuperarParametrosAuto(HttpServletRequest request) {
