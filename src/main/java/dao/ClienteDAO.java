@@ -87,29 +87,38 @@ public class ClienteDAO {
 	}
 
 	public Cliente obtenerClientePorId(int id) {
-		Cliente cliente = null;
-		String sql = "SELECT * FROM clientes WHERE id = ?";
+	    String query = "SELECT * FROM clientes WHERE id_cliente = ?";
 
-		try (Connection conn = ConexionBD.getConexion(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+	    // Usamos try-with-resources para asegurar que los recursos se cierren automáticamente
+	    try (Connection con = ConexionBD.getConexion();
+	         PreparedStatement stmt = con.prepareStatement(query)) {
 
-			stmt.setInt(1, id);
-			try (ResultSet rs = stmt.executeQuery()) {
-				if (rs.next()) {
-					String nombre = rs.getString("nombre");
-					String documento = rs.getString("documento");
-					String direccion = rs.getString("direccion");
-					String telefono = rs.getString("telefono");
-					String correo = rs.getString("correo");
+	        // Establecer el parámetro en la consulta
+	        stmt.setInt(1, id);
 
-					cliente = new Cliente(id, nombre, documento, direccion, telefono, correo);
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	        // Ejecutar la consulta y obtener el resultado
+	        try (ResultSet rs = stmt.executeQuery()) {
+	            // Verificar si hay resultados
+	            if (rs.next()) {
+	                int idCliente = rs.getInt("id_cliente");
+	                String nombre = rs.getString("nombre");
+	                String documento = rs.getString("documento_identidad");
+	                String direccion = rs.getString("direccion");
+	                String telefono = rs.getString("telefono");
+	                String correo = rs.getString("correo");
 
-		return cliente;
+	                return new Cliente(idCliente, nombre, documento, direccion, telefono, correo);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        // Manejo de errores en caso de fallo en la conexión o la consulta
+	        System.out.println("Error al obtener el cliente por ID: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    // Retornar null si no se encuentra el cliente o si ocurre un error
+	    return null;
 	}
+
 
 	public ArrayList<Cliente> obtenerReporteClientes() {
 		ArrayList<Cliente> clientes = new ArrayList<>();
@@ -124,7 +133,7 @@ public class ClienteDAO {
 				String telefono = rs.getString("telefono");
 				int cantidadVecesAlquilado = rs.getInt("veces_alquilado");
 
-				Cliente cliente = new Cliente(id, nombre, documento, telefono, cantidadVecesAlquilado );
+				Cliente cliente = new Cliente(id, nombre, documento, telefono, cantidadVecesAlquilado);
 				clientes.add(cliente);
 
 			}

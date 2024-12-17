@@ -39,10 +39,11 @@
 						<%
 						// Obtenemos la lista de clientes del request
 						ArrayList<Cliente> clientes = (ArrayList<Cliente>) request.getAttribute("clientes");
-						
+
 						if (clientes != null) {
 							for (Cliente cliente : clientes) {
 						%>
+						
 						<tr>
 							<td><%=cliente.getId()%></td>
 							<td><%=cliente.getNombre()%></td>
@@ -50,7 +51,8 @@
 							<td><%=cliente.getDireccion()%></td>
 							<td><%=cliente.getTelefono()%></td>
 							<td><%=cliente.getCorreo()%></td>
-							<td><a href="EditarCliente?id=<%=cliente.getId()%>"
+							<td><a
+								href="cliente?action=modificarCliente&id=<%=cliente.getId()%>"
 								class="btn btn-warning btn-sm">Editar</a></td>
 							<td><a href="EliminarCliente?id=<%=cliente.getId()%>"
 								class="btn btn-danger btn-sm">Eliminar</a></td>
