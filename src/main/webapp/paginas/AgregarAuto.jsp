@@ -61,6 +61,12 @@
 								<input type="number" class="form-control" id="precioDia"
 									name="precioDia" step="0.01" required>
 							</div>
+							
+							<div class="mb-3">
+								<label for="kilometraje" class="form-label">Kilometraje KM</label>
+								<input type="number" class="form-control" id="kilometraje"
+									name="kilometraje" step="0.01" required>
+							</div>
 
 							<!-- Estado -->
 							<input type="hidden" value="Disponible" name="estado"> <input
@@ -71,6 +77,8 @@
 								<label for="img" class="form-label">Imagen (URL)</label> <input
 									type="text" class="form-control" id="img" name="img">
 							</div>
+							
+							
 
 							<div class="d-grid">
 								<button type="submit" class="btn btn-primary">Agregar</button>

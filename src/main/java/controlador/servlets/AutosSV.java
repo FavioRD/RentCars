@@ -106,9 +106,21 @@ public class AutosSV extends HttpServlet {
 			doPut(request, response);
 			break;
 		case "agregarAuto":
-			Auto autoAgregado = recuperarParametrosAuto(request);
+			String marca = request.getParameter("marca");
+			String modelo = request.getParameter("modelo");
+			String anio = request.getParameter("anio");
+			String color = request.getParameter("color");
+			String matricula = request.getParameter("matricula");
+			double precioDia = Double.parseDouble(request.getParameter("precioDia"));
+			String estado = request.getParameter("estado");
+			String img = request.getParameter("img");
+			double kilometraje = Double.parseDouble(request.getParameter("kilometraje"));
+
+			Auto autoAgregado = new Auto(marca, modelo, anio, color, matricula, precioDia, estado, img, kilometraje);
+
 			autoDAO.registrarAuto(autoAgregado);
 			response.sendRedirect("autos?action=verAutos");
+			break;
 		case "borrarAuto":
 			doDelete(request, response);
 			break;
@@ -137,8 +149,8 @@ public class AutosSV extends HttpServlet {
 		response.getWriter().append("Auto eliminado");
 
 		autoDAO.eliminarAuto(id);
-	
-	     response.sendRedirect("autos?action=verAutos");
+
+		response.sendRedirect("autos?action=verAutos");
 	}
 
 	private Auto recuperarParametrosAuto(HttpServletRequest request) {
