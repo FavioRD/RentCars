@@ -43,7 +43,7 @@
 						if (clientes != null) {
 							for (Cliente cliente : clientes) {
 						%>
-						
+
 						<tr>
 							<td><%=cliente.getId()%></td>
 							<td><%=cliente.getNombre()%></td>
@@ -54,8 +54,11 @@
 							<td><a
 								href="cliente?action=modificarCliente&id=<%=cliente.getId()%>"
 								class="btn btn-warning btn-sm">Editar</a></td>
-							<td><a href="EliminarCliente?id=<%=cliente.getId()%>"
-								class="btn btn-danger btn-sm">Eliminar</a></td>
+							<td><a
+								href="cliente?action=borrarCliente&id=<%=cliente.getId()%>"
+								class="btn btn-danger btn-sm"
+								onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?');">
+									Eliminar </a></td>
 						</tr>
 						<%
 						}
