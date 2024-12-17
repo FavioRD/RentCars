@@ -12,10 +12,16 @@ Auto auto = (Auto) request.getAttribute("auto");
 <meta charset="UTF-8">
 <title>Alquilar Auto</title>
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 </head>
-<body class="bg-light">
+<body class="d-flex w-100" style="height: 100vh; overflow: hidden;">
+    <%@ include file="/componentes/navbar.jsp"%>
 	<div class="container py-5">
 		<div class="row justify-content-center">
 			<div class="col-lg-6 col-md-8 col-sm-10">
