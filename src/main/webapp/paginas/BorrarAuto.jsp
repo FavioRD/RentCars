@@ -23,35 +23,35 @@ Auto auto = (Auto) request.getAttribute("auto");
 		<input type="hidden" name="id" value="<%=auto.getId()%>">
 			<div class="form-group">
 				<label for="marca">Marca</label> <input type="text"
-					class="form-control" id="modelo" value="<%=auto.getMarca()%>">
+					class="form-control" id="modelo" disabled="disabled" value="<%=auto.getMarca()%>">
 			</div>
 			<div class="form-group">
 				<label for="modelo">Modelo</label> <input type="text"
-					class="form-control" id="modelo" value="<%=auto.getModelo()%>">
+					class="form-control" id="modelo" disabled="disabled"value="<%=auto.getModelo()%>">
 			</div>
 			<div class="form-group">
 				<label for="anio">Año</label> <input type="text"
-					class="form-control" id="modelo" value="<%=auto.getAnio()%>">
+					class="form-control" id="modelo" disabled="disabled" value="<%=auto.getAnio()%>">
 			</div>
 			<div class="form-group">
 				<label for="color">Color</label> <input type="text"
-					class="form-control" id="modelo" value="<%=auto.getColor()%>">
+					class="form-control" id="modelo" disabled="disabled" value="<%=auto.getColor()%>">
 			</div>
 			<div class="form-group">
 				<label for="color">Matricula</label> <input type="text"
-					class="form-control" id="modelo" value="<%=auto.getMatricula()%>">
+					class="form-control" id="modelo" disabled="disabled" value="<%=auto.getMatricula()%>">
 			</div>
 			<div class="form-group">
 				<label for="color">Kilometraje</label> <input type="text"
-					class="form-control" id="modelo" value="<%=auto.getKilometraje()%>">
+					class="form-control" id="modelo" disabled="disabled" value="<%=auto.getKilometraje()%>">
 			</div>
 			<div class="form-group">
 				<label for="color">Precio por dia</label> <input type="text"
-					class="form-control" id="modelo" value="<%=auto.getPrecio_dia()%>">
+					class="form-control" id="modelo" disabled="disabled" value="<%=auto.getPrecio_dia()%>">
 			</div>
 			<div class="form-group">
 				<label for="color">Estado</label> <input type="text"
-					class="form-control" id="modelo" value="<%=auto.getEstado()%>">
+					class="form-control" id="modelo" disabled="disabled" value="<%=auto.getEstado()%>">
 			</div>
 		</div>
 
