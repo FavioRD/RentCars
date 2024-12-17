@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -190,13 +191,27 @@ public class AutoDAO implements AutoDao {
 				double kilometraje = rs.getDouble("kilometraje");
 				Auto auto = new Auto(id, marca, modelo, anio, color, matricula, precioDia, estado, img, kilometraje);
 				autos.add(auto);
-				System.out.println(auto);
 			}
 			return autos;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	
+	public int obtenerCantidadAutos() {
+		String sql = "{CALL obtenerCantidadAutos()}";
+		try (Connection conn = ConexionBD.getConexion();
+				CallableStatement stmt = conn.prepareCall(sql);
+				ResultSet rs = stmt.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

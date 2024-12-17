@@ -7,12 +7,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import modelo.clases.Auto;
 import modelo.clases.Usuario;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import dao.AlquilarAutoDAO;
 import dao.AutoDAO;
 
 /**
@@ -21,8 +20,6 @@ import dao.AutoDAO;
 @WebServlet(name = "controlador", urlPatterns = { "/controlador" })
 public class Controlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private AutoDAO autoDAO = new AutoDAO();
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -51,6 +48,18 @@ public class Controlador extends HttpServlet {
 			switch (action != null ? action : "") {
 
 			case "volverInicio":
+				AutoDAO autoDAO = new AutoDAO();
+				int cantidadAutosTotales = autoDAO.obtenerCantidadAutos();
+				
+				AlquilarAutoDAO alquilarDAO = new AlquilarAutoDAO();
+				double totalAlquileres = alquilarDAO.obtenerSumaTotalAlquileres();
+				
+				int cantidadAutosAlquilados = autoDAO.listarAlquilados().size();
+				
+				request.setAttribute("totalAlquileres", totalAlquileres);
+				request.setAttribute("cantidadAutosTotales", cantidadAutosTotales);
+				request.setAttribute("cantidadAutosAlquilados", cantidadAutosAlquilados);
+				
 				RequestDispatcher dispatcher1 = request.getRequestDispatcher("/paginas/Home.jsp");
 				dispatcher1.forward(request, response);
 				break;

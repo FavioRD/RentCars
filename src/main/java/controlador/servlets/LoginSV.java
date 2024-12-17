@@ -55,6 +55,7 @@ public class LoginSV extends HttpServlet {
 			HttpSession sesion = request.getSession(true);
 			sesion.setAttribute("usuario", usuarioEncontrado);
 			
+			
 			response.sendRedirect("controlador?action=volverInicio");
 			
 		} else {

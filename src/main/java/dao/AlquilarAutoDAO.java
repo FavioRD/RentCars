@@ -40,24 +40,24 @@ public class AlquilarAutoDAO implements IAlquilarAuto {
 
 	@Override
 	public void finalizarAlquiler(int idAlquiler, double kmRecorridos) {
-		 CallableStatement stmt = null;
-		 boolean resultado = false;
-		 Connection connection = ConexionBD.getConexion();
+		CallableStatement stmt = null;
+		boolean resultado = false;
+		Connection connection = ConexionBD.getConexion();
 		try {
-			 String sql = "{CALL ActualizarEstadoAlquiler(?, ?)}";  // Llamada al procedimiento con parámetro
-	            stmt = connection.prepareCall(sql);
+			String sql = "{CALL ActualizarEstadoAlquiler(?, ?)}"; // Llamada al procedimiento con parámetro
+			stmt = connection.prepareCall(sql);
 
-	            // Establecemos el valor del parámetro
-	            stmt.setInt(1, idAlquiler);
-	            stmt.setDouble(2, kmRecorridos);
+			// Establecemos el valor del parámetro
+			stmt.setInt(1, idAlquiler);
+			stmt.setDouble(2, kmRecorridos);
 
-	            // Ejecutamos la llamada
-	            int rowsAffected = stmt.executeUpdate();
-	            
-				if (rowsAffected > 0) {
-					resultado = true;
-				}
-	            
+			// Ejecutamos la llamada
+			int rowsAffected = stmt.executeUpdate();
+
+			if (rowsAffected > 0) {
+				resultado = true;
+			}
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -65,24 +65,37 @@ public class AlquilarAutoDAO implements IAlquilarAuto {
 
 	public Alquiler obtenerAlquiler(int idAuto) {
 		Alquiler alquiler = null;
-	
-		String sql = "SELECT au.matricula, au.marca, au.modelo , al.*\n"
-				+ "FROM autos au\n"
+
+		String sql = "SELECT au.matricula, au.marca, au.modelo , al.*\n" + "FROM autos au\n"
 				+ "INNER JOIN alquileres al ON au.id_auto = al.id_auto\n"
 				+ "WHERE au.id_auto = ? AND al.estado_alquiler = 'Activo';";
 		try (Connection conn = ConexionBD.getConexion(); PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setInt(1, idAuto);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				alquiler = new Alquiler(rs.getInt("id_alquiler"),rs.getInt("id_auto"), rs.getInt("id_cliente"), rs.getDate("fecha_inicio"),
-						rs.getDate("fecha_fin"), rs.getDouble("precio_total"), rs.getString("estado_alquiler"));
-				
+				alquiler = new Alquiler(rs.getInt("id_alquiler"), rs.getInt("id_auto"), rs.getInt("id_cliente"),
+						rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"), rs.getDouble("precio_total"),
+						rs.getString("estado_alquiler"));
+
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return alquiler;
 	}
 
+	public double obtenerSumaTotalAlquileres() {
+		double sumaTotal = 0;
+		String sql = "{CALL obtenerSumaTotalesAlquileres()}";
+		try (Connection conn = ConexionBD.getConexion(); CallableStatement stmt = conn.prepareCall(sql);) {
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				sumaTotal = rs.getDouble("total_ultimos_30_dias");
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return sumaTotal;
+	}
 }
