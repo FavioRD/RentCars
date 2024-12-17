@@ -15,7 +15,10 @@
 </head>
 <body class="d-flex" style="height: 100vh;">
 	<%@ include file="../componentes/navbar.jsp"%>
-
+	<%
+	HttpSession sesionAuto = request.getSession();
+	Usuario usuarioAuto = (Usuario) sesion.getAttribute("usuario");
+	%>
 	<div class="mt-3 mx-5 d-flex justify-content-center flex-column gap-3">
 		<h2>Listado de autos</h2>
 		<div class="d-flex gap-3 flex-wrap"
@@ -74,18 +77,31 @@
 					} else if (estado.equals("Alquilado")) {
 					%>
 					<!-- Botón de opciones si el auto está alquilado -->
-					<a href="alquilarAuto?accion=opcionAlquiler&id_auto=<%=auto.getId()%>"
+					<a
+						href="alquilarAuto?accion=opcionAlquiler&id_auto=<%=auto.getId()%>"
 						class="btn btn-secondary w-100 mt-3" style="border-radius: 25px;">
 						Opciones de Alquiler </a>
 					<%
 					}
 					%>
 					<div class="dropdown btn w-100 mt-3">
-						<button class="btn w-100 btn-secondary dropdown-toggle" type="button"
-							data-bs-toggle="dropdown" aria-expanded="false">Mantenimiento</button>
+						<button class="btn w-100 btn-secondary dropdown-toggle"
+							type="button" data-bs-toggle="dropdown" aria-expanded="false">Mantenimiento</button>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="autos?action=modificarAuto&id=<%= auto.getId() %>">Modificar Auto</a></li>
-							<li><a class="dropdown-item" href="autos?action=borrarAuto&id=<%=auto.getId()%>">Borrar Auto</a></li>	
+							<li><a class="dropdown-item"
+								href="autos?action=modificarAuto&id=<%=auto.getId()%>">Modificar
+									Auto</a></li>
+
+							<%
+							if (usuarioAuto.getRol().trim().equals("Administrador")) {
+							%>
+
+							<li><a class="dropdown-item"
+								href="autos?action=borrarAuto&id=<%=auto.getId()%>">Borrar
+									Auto</a></li>
+							<%
+							}
+							%>
 						</ul>
 					</div>
 				</div>

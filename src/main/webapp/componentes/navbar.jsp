@@ -42,16 +42,17 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         (Usuario) sesion.getAttribute("usuario"); %>
 
         <!-- Mantenimiento Auto -->
-        <% if (usuario.getRol().trim().equals("Administrador")) { %>
+        
         <li class="nav-item mt-3">
           <h6 class="text-uppercase text-secondary px-2">Mantenimiento Auto</h6>
         </li>
+        <% if (usuario.getRol().trim().equals("Administrador")) { %>
         <li class="nav-item">
           <a href="autos?action=agregarAuto" class="nav-link text-dark ps-3">
             <i class="bi bi-plus-circle me-2"></i> Agregar Auto
           </a>
         </li>
-
+        <% } %>
         <li class="nav-item">
           <a
             href="${pageContext.request.contextPath}/autos?action=verAutos"
@@ -61,7 +62,7 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             Listar Autos
           </a>
         </li>
-        <% } %>
+       
 
         <!-- Ver Autos Alquilados -->
         <li class="nav-item mt-3">

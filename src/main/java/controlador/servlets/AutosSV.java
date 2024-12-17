@@ -44,7 +44,7 @@ public class AutosSV extends HttpServlet {
 		if (usuario == null) {
 			response.sendRedirect("paginas/login.jsp");
 		} else {
-			if (usuario.getRol().equals("administrador") || usuario.getRol().equals("Administrador")) {
+			if (usuario.getRol().equals("Usuario") || usuario.getRol().equals("Administrador")) {
 				String action = request.getParameter("action");
 				String dispatcher = "";
 
