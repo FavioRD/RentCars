@@ -85,8 +85,7 @@
 							data-bs-toggle="dropdown" aria-expanded="false">Mantenimiento</button>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="autos?action=modificarAuto&id=<%= auto.getId() %>">Modificar Auto</a></li>
-							<li><a class="dropdown-item" href="#">Borrar Auto</a></li>
-							
+							<li><a class="dropdown-item" href="autos?action=borrarAuto&id=<%=auto.getId()%>">Borrar Auto</a></li>	
 						</ul>
 					</div>
 				</div>
