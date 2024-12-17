@@ -89,16 +89,12 @@ public class ClienteDAO {
 	public Cliente obtenerClientePorId(int id) {
 	    String query = "SELECT * FROM clientes WHERE id_cliente = ?";
 
-	    // Usamos try-with-resources para asegurar que los recursos se cierren automáticamente
 	    try (Connection con = ConexionBD.getConexion();
 	         PreparedStatement stmt = con.prepareStatement(query)) {
 
-	        // Establecer el parámetro en la consulta
 	        stmt.setInt(1, id);
-
-	        // Ejecutar la consulta y obtener el resultado
 	        try (ResultSet rs = stmt.executeQuery()) {
-	            // Verificar si hay resultados
+
 	            if (rs.next()) {
 	                int idCliente = rs.getInt("id_cliente");
 	                String nombre = rs.getString("nombre");
@@ -111,11 +107,10 @@ public class ClienteDAO {
 	            }
 	        }
 	    } catch (SQLException e) {
-	        // Manejo de errores en caso de fallo en la conexión o la consulta
+
 	        System.out.println("Error al obtener el cliente por ID: " + e.getMessage());
 	        e.printStackTrace();
 	    }
-	    // Retornar null si no se encuentra el cliente o si ocurre un error
 	    return null;
 	}
 

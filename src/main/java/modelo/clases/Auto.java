@@ -15,6 +15,21 @@ public class Auto {
 	public Auto() {
 		super();
 	}
+	
+	// Constructor para agregar autos
+	public Auto(String marca, String modelo, String anio, String color, String matricula, double precio_dia,
+			String estado, String img, double kilometraje) {
+		super();
+		this.marca = marca;
+		this.modelo = modelo;
+		this.anio = anio;
+		this.color = color;
+		this.matricula = matricula;
+		this.precio_dia = precio_dia;
+		this.estado = estado;
+		this.img = img;
+		this.kilometraje = kilometraje;
+	}
 
 //	Constructor para listar autos con mas kilometraje
 	public Auto(int id, String marca, String modelo, String matricula, double kilometraje) {
