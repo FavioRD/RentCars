@@ -2,94 +2,109 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
+	<meta charset="UTF-8" />
+	<title>Sidebar con Bootstrap</title>
+	<!-- Bootstrap 5.3 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-	<nav class="d-flex flex-column bg-info-subtle vh-100 shadow-sm"
-		style="width: 250px; min-width: 250px">
-		<div class="text-center py-5 border-bottom">
-			<a
-				href="${pageContext.request.contextPath}/controlador?action=volverInicio">
-				<img class="rounded-circle"
-				src="https://media.istockphoto.com/id/1290071290/vector/rental-car-icon.jpg?s=612x612&w=0&k=20&c=q4EsvU3jJJYbcZTJ1EzKh6c-Dvy39HagvAUgTCRK9bE="
-				alt="Logo" style="width: 100px; height: 100px; object-fit: cover" />
-			</a>
-		</div>
+		<!-- Sidebar -->
+		<nav class="d-flex flex-column bg-light shadow-sm" style="width: 250px; min-width: 250px;">
+			<!-- Logo -->
+			<div class="text-center py-4 border-bottom">
+				<a href="${pageContext.request.contextPath}/controlador?action=volverInicio">
+					<img src="https://media.istockphoto.com/id/1290071290/vector/rental-car-icon.jpg?s=612x612&w=0&k=20&c=q4EsvU3jJJYbcZTJ1EzKh6c-Dvy39HagvAUgTCRK9bE=" 
+						alt="Logo" class="rounded-circle" 
+						style="width: 100px; height: 100px; object-fit: cover;">
+				</a>
+				<h5 class="mt-2">Rent Car</h5>
+			</div>
 
-		<ul
-			class="d-flex flex-column justify-content-center gap-3 list-unstyled w-100 px-3 mb-0 flex-grow-1">
+			<!-- Menu Items -->
+			<ul class="nav flex-column px-2 flex-grow-1">
+				<%
+				HttpSession sesion = request.getSession();
+				Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+				%>
 
-			<%
-			HttpSession sesion = request.getSession();
+				<!-- Mantenimiento Auto -->
+				<% if (usuario.getRol().trim().equals("Administrador")) { %>
+				<li class="nav-item mt-3">
+					<h6 class="text-uppercase text-secondary px-2">Mantenimiento Auto</h6>
+				</li>
+				<li class="nav-item">
+					<a href="autos?action=agregarAuto" class="nav-link text-dark ps-3">
+						<i class="bi bi-plus-circle me-2"></i> Agregar Auto
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link text-dark ps-3">
+						<i class="bi bi-trash me-2"></i> Borrar Auto
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="${pageContext.request.contextPath}/autos?action=verAutos" class="nav-link text-dark ps-3">
+						<i class="bi bi-list-task me-2"></i> Listar Autos
+					</a>
+				</li>
+				<% } %>
 
-			Usuario usuario = (Usuario) sesion.getAttribute("usuario");
-			%>
+				<!-- Ver Autos Alquilados -->
+				<li class="nav-item mt-3">
+					<h6 class="text-uppercase text-secondary px-2">Autos</h6>
+				</li>
+				<li class="nav-item">
+					<a href="autos?action=verAlquilados" class="nav-link text-dark ps-3">
+						<i class="bi bi-eye me-2"></i> Ver Autos Alquilados
+					</a>
+				</li>
 
-			<%
-			if (usuario.getRol().trim().equals("Administrador")) {
-			%>
-			<li>
-				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button"
-						data-bs-toggle="dropdown" aria-expanded="false">
-						Mantenimiento Auto</button>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="autos?action=agregarAuto">Agregar
-								Auto</a></li>
-						<li><a class="dropdown-item" href="#">Borrar Auto</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/autos?action=verAutos"
-							class="dropdown-item">Listar Autos</a></li>
-						<li>
-					</ul>
-				</div>
-			</li>
+				<!-- Mantenimiento Clientes -->
+				<li class="nav-item mt-3">
+					<h6 class="text-uppercase text-secondary px-2">Clientes</h6>
+				</li>
+				<li class="nav-item">
+					<a href="${pageContext.request.contextPath}/cliente" class="nav-link text-dark ps-3">
+						<i class="bi bi-people me-2"></i> Mantenimiento Clientes
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="${pageContext.request.contextPath}/cliente?action=agregarCliente" 
+					   class="nav-link text-dark ps-3">
+						<i class="bi bi-person-plus-fill me-2"></i> Agregar Cliente
+					</a>
+				</li>
 
-			<%
-			}
-			%>
+				<!-- Reportes -->
+				<li class="nav-item mt-3">
+					<h6 class="text-uppercase text-secondary px-2">Reportes</h6>
+				</li>
+				<li class="nav-item">
+					<a href="autos?action=autosConMasKilometraje" class="nav-link text-dark ps-3">
+						<i class="bi bi-speedometer2 me-2"></i> Autos con más Kilometraje
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="cliente?action=reporteClientes" class="nav-link text-dark ps-3">
+						<i class="bi bi-bar-chart me-2"></i> Clientes que más Alquilaron
+					</a>
+				</li>
+			</ul>
 
-			<a href="autos?action=verAlquilados"
-				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Ver
-				Autos Alquilados</a>
-			</li>
+			<!-- Cerrar Sesión -->
+			<div class="border-top py-3 px-3">
+				<a href="${pageContext.request.contextPath}/controlador?action=cerrarSesion" 
+				   class="btn btn-danger w-100 d-flex justify-content-center align-items-center">
+					<i class="bi bi-box-arrow-left me-2"></i> Cerrar Sesión
+				</a>
+			</div>
+		</nav>
 
-
-			<li><a href="${pageContext.request.contextPath}/cliente"
-				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Mantenimiento
-					Clientes</a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/cliente?action=agregarCliente"
-				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Agregar
-					Cliente</a></li>
-
-			<li>
-				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button"
-						data-bs-toggle="dropdown" aria-expanded="false">Reportes</button>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item"
-							href="autos?action=autosConMasKilometraje">Autos con mas
-								kilometraje</a></li>
-						<li><a class="dropdown-item" href="cliente?action=reporteClientes">Clientes que mas
-								veces alquilaron</a></li>
-
-					</ul>
-				</div>
-			</li>
-		</ul>
-
-		<div class="text-center py-4 border-top">
-			<a
-				href="${pageContext.request.contextPath}/controlador?action=cerrarSesion"
-				class="text-decoration-none d-block py-3 px-3 bg-light rounded shadow-sm">Cerrar
-				Sesión</a>
-		</div>
-	</nav>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
