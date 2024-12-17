@@ -10,6 +10,9 @@ import modelo.clases.Usuario;
 
 import java.io.IOException;
 
+import dao.AlquilarAutoDAO;
+import dao.AutoDAO;
+
 /**
  * Servlet implementation class IndexSV
  */
@@ -37,7 +40,9 @@ public class IndexSV extends HttpServlet {
 		if (usuario == null) {
 			response.sendRedirect("paginas/login.jsp");
 		} else {
-			response.sendRedirect("controlador?action=volverInicio");
+
+			String dispatcher = "/paginas/Home.jsp";
+			request.getRequestDispatcher(dispatcher).forward(request, response);
 		}
 		
 		
