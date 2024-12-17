@@ -7,6 +7,7 @@ public class Cliente {
 	private String  Direccion;
 	private String Telefono;
 	private String Correo;
+	private int cantidadVecesAlquilado;
 	
 	public Cliente(int id, String nombre, String documento, String direccion, String telefono, String correo) {
 		super();
@@ -16,6 +17,16 @@ public class Cliente {
 		Direccion = direccion;
 		Telefono = telefono;
 		Correo = correo;
+	}
+	
+	public Cliente(int id, String nombre, String documento, String telefono, int cantidadVecesAlquilado) {
+		super();
+		this.id = id;
+		Nombre = nombre;
+		Documento = documento;
+		Telefono = telefono;
+		this.cantidadVecesAlquilado = cantidadVecesAlquilado;
+		
 	}
 	
 	public Cliente() {
@@ -70,5 +81,12 @@ public class Cliente {
 		Correo = correo;
 	}
 	
+	public int getCantidadVecesAlquilado() {
+		return cantidadVecesAlquilado;
+	}
+
+	public void setCantidadVecesAlquilado(int cantidadVecesAlquilado) {
+		this.cantidadVecesAlquilado = cantidadVecesAlquilado;
+	}
 
 }

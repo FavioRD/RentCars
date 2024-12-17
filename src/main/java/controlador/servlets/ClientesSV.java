@@ -11,6 +11,7 @@ import modelo.clases.Usuario;
 import dao.ClienteDAO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/cliente")
@@ -62,7 +63,15 @@ public class ClientesSV extends HttpServlet {
 						clienteDAO.borrarCliente(idCliente);
 						response.sendRedirect("cliente?action=listarCliente");
 						return;
+					
+					case "reporteClientes":
+						ArrayList<Cliente> listaClientesReporte = clienteDAO.obtenerReporteClientes();
+						request.setAttribute("clientes", listaClientesReporte);
+						dispatcher = "/paginas/ReporteClientesAlquileres.jsp";
+						break;
+					
 					}
+					
 					if (dispatcher != null) {
 						request.getRequestDispatcher(dispatcher).forward(request, response);
 					}

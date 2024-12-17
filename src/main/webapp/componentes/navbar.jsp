@@ -52,30 +52,31 @@
 			}
 			%>
 
-			<a
-				href="autos?action=verAlquilados"
+			<a href="autos?action=verAlquilados"
 				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Ver
 				Autos Alquilados</a>
 			</li>
 
-			<li><a href="${pageContext.request.contextPath}/cliente"
-				class="text-decoration-none d-block py-4 px-3 bg-light rounded">Alquilar
-					Auto</a></li>
+
 			<li><a href="${pageContext.request.contextPath}/cliente"
 				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Mantenimiento
 					Clientes</a></li>
-					<li><a href="${pageContext.request.contextPath}/cliente?action=agregarCliente"
-				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Agregar Cliente</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/cliente?action=agregarCliente"
+				class="text-decoration-none d-block py-3 px-3 rounded bg-light shadow-sm">Agregar
+					Cliente</a></li>
 
 			<li>
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button"
-						data-bs-toggle="dropdown" aria-expanded="false">
-						Reportes</button>
+						data-bs-toggle="dropdown" aria-expanded="false">Reportes</button>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="autos?action=autosConMasKilometraje">Autos con mas kilometraje</a></li>
-						<li><a class="dropdown-item" href="#">Clientes que mas veces alquilaron</a></li>
-						
+						<li><a class="dropdown-item"
+							href="autos?action=autosConMasKilometraje">Autos con mas
+								kilometraje</a></li>
+						<li><a class="dropdown-item" href="cliente?action=reporteClientes">Clientes que mas
+								veces alquilaron</a></li>
+
 					</ul>
 				</div>
 			</li>
