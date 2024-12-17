@@ -40,11 +40,7 @@
 						<i class="bi bi-plus-circle me-2"></i> Agregar Auto
 					</a>
 				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link text-dark ps-3">
-						<i class="bi bi-trash me-2"></i> Borrar Auto
-					</a>
-				</li>
+				
 				<li class="nav-item">
 					<a href="${pageContext.request.contextPath}/autos?action=verAutos" class="nav-link text-dark ps-3">
 						<i class="bi bi-list-task me-2"></i> Listar Autos

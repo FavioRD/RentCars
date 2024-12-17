@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +44,14 @@
 				</div>
 			</div>
 
+
+			<%
+			HttpSession sesionHome = request.getSession();
+			Usuario usuarioHome = (Usuario) sesion.getAttribute("usuario");
+			%>
+			<%
+			if (usuarioHome.getRol().equals("Administrador")){
+			%>
 			<!-- Card 2: Total generado en el último mes -->
 			<div class="col-md-4 mb-4">
 				<div class="card shadow-lg border-0 text-center">
@@ -52,6 +63,10 @@
 					</div>
 				</div>
 			</div>
+
+			<%
+            }
+			            %>
 
 			<!-- Card 3: Autos alquilados -->
 			<div class="col-md-4 mb-4">

@@ -114,6 +114,8 @@ public class AlquilarSV extends HttpServlet {
 
 			daoAlquiler.alquilarAuto(alquiler);
 			daoAuto.cambiarEstado(Integer.parseInt(idAuto), "Alquilado");
+			
+			response.sendRedirect("autos?action=verAutos");
 
 		} else {
 			doPut(request, response);

@@ -112,9 +112,12 @@ Auto auto = (Auto) request.getAttribute("auto");
 								Auto</button>
 						</form>
 					</div>
+					
 				</div>
+				<a href="autos?action=verAutos" class="btn btn-secondary mt-3">Volver</a>
 			</div>
 		</div>
+		
 	</div>
 
 	<script
