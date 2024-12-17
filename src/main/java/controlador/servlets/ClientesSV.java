@@ -27,7 +27,6 @@ public class ClientesSV extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ClienteDAO clienteDAO = new ClienteDAO();
-
 		HttpSession sesion = request.getSession();
 		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
 
@@ -45,11 +44,12 @@ public class ClientesSV extends HttpServlet {
 						break;
 
 					case "modificarCliente":
-						int id = Integer.parseInt(request.getParameter("id"));
-						Cliente cliente = clienteDAO.obtenerClientePorId(id);
-						request.setAttribute("cliente", cliente);
-						dispatcher = "/paginas/ModificarCliente.jsp";
-						break;
+					        int id = Integer.parseInt(request.getParameter("id"));
+					        Cliente cliente = clienteDAO.obtenerClientePorId(id); 
+					        request.setAttribute("cliente", cliente);
+					        dispatcher = "/paginas/ModificarCliente.jsp";
+					    break;
+
 
 					case "listarCliente":
 					default:
@@ -84,6 +84,7 @@ public class ClientesSV extends HttpServlet {
 		}
 	}
 
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -97,11 +98,24 @@ public class ClientesSV extends HttpServlet {
 			break;
 
 		case "modificarCliente":
-			Cliente clienteModificado = recuperarParametrosCliente(request);
-			clienteDAO.modificarCliente(clienteModificado);
-			response.sendRedirect("cliente?action=listarCliente");
-			break;
+            // Recuperamos los parámetros del formulario
+            int id = Integer.parseInt(request.getParameter("id"));
+            String nombre = request.getParameter("nombre");
+            String documento = request.getParameter("documento");
+            String direccion = request.getParameter("direccion");
+            String telefono = request.getParameter("telefono");
+            String correo = request.getParameter("correo");
 
+            // Creamos un objeto Cliente con los datos modificados
+            Cliente clienteModificado = new Cliente(id, nombre, documento, direccion, telefono, correo);
+
+            // Llamamos al método de la capa de datos para modificar el cliente
+            ClienteDAO clienteDAO = new ClienteDAO();
+            clienteDAO.modificarCliente(clienteModificado);
+
+            // Redirigimos al listado de clientes
+            response.sendRedirect("cliente?action=listarCliente");
+            break;
 		case "borrarCliente":
 			doDelete(request, response);
 			break;
